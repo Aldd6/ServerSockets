@@ -1,9 +1,13 @@
 module com.das6.serversockets {
     requires javafx.controls;
     requires javafx.fxml;
-
+    requires org.kordamp.ikonli.javafx;
+    requires org.kordamp.ikonli.core;
+    requires org.kordamp.ikonli.bootstrapicons;
     requires org.kordamp.bootstrapfx.core;
 
-    opens com.das6.serversockets to javafx.fxml;
+    opens com.das6.serversockets.controller.cliente to javafx.fxml;
+
     exports com.das6.serversockets;
+    exports com.das6.serversockets.controller.cliente;
 }
