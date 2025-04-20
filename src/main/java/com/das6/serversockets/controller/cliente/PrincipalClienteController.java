@@ -22,7 +22,7 @@ public class PrincipalClienteController {
 
     private void minimizarVentana(MouseEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.isIconified();
+        stage.setIconified(true);
     }
 
     private void cerrarVentana(MouseEvent event) {
