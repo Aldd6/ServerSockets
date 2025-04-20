@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" spacing="20.0" style="-fx-background-color: #f9fcff;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <padding>
+      <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+   </padding>
+   <children>
+      <Label alignment="CENTER" style="-fx-font-weight: bold;" text="¡Bienvenido!" textFill="#4a6e83">
+         <font>
+            <Font size="84.0" />
+         </font>
+      </Label>
+      <Label style="-fx-font-size: 36px;" text="Por favor selecciona un servicio" textFill="#4a6e83" />
+      <HBox alignment="CENTER" prefHeight="320.0" prefWidth="246.0" spacing="40.0">
+         <children>
+            <VBox fx:id="btnCaja" prefHeight="315.0" prefWidth="440.0" style="-fx-background-color: #e6eff3; -fx-padding: 40; -fx-background-radius: 20; -fx-alignment: center; -fx-cursor: hand;">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label alignment="CENTER" prefHeight="47.0" prefWidth="70.0" style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #2b2b2b;" text="Caja" />
+               </children>
+            </VBox>
+            <VBox fx:id="btnAtencion" prefHeight="315.0" prefWidth="440.0" style="-fx-background-color: #e6eff3; -fx-padding: 40; -fx-background-radius: 20; -fx-alignment: center; -fx-cursor: hand;">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #2b2b2b;" text="Atención al cliente" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</VBox>
