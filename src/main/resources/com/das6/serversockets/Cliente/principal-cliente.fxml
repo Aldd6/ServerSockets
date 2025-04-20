@@ -20,8 +20,8 @@
                         <Insets left="15.0" />
                     </HBox.margin>
                 </Label>
-                <FontIcon iconColor="WHITE" iconLiteral="bi-dash" iconSize="28" wrappingWidth="27.0" />
-                <FontIcon iconColor="WHITE" iconLiteral="bi-x" iconSize="28" wrappingWidth="27.0" />
+                <FontIcon fx:id="btnMinimizar" iconColor="WHITE" iconLiteral="bi-dash" iconSize="28" wrappingWidth="27.0" />
+                <FontIcon fx:id="btnCerrar" iconColor="WHITE" iconLiteral="bi-x" iconSize="28" wrappingWidth="27.0" />
             </children>
         </HBox>
         <VBox layoutY="38.0" prefHeight="213.0" prefWidth="366.0">
@@ -52,9 +52,9 @@
                 <TableView prefHeight="119.0" prefWidth="336.0" styleClass="tabla" stylesheets="@main.css">
                     <columns>
                         <TableColumn fx:id="columnCheckBox" minWidth="7.0" prefWidth="25.0" styleClass="columna-izquierda" />
-                        <TableColumn fx:id="columnTicket" prefWidth="129.0" text="Ticket #" />
-                        <TableColumn fx:id="columnTiempo" minWidth="0.0" prefWidth="129.0" text="Tiempo" />
-                        <TableColumn fx:id="columnEstatus" prefWidth="52.0" styleClass="columna-derecha" text="Estatus" />
+                        <TableColumn fx:id="columnTicket" prefWidth="119.20000839233398" text="Ticket #" />
+                        <TableColumn fx:id="columnTiempo" minWidth="0.0" prefWidth="118.39994812011719" text="Tiempo" />
+                        <TableColumn fx:id="columnEstatus" prefWidth="68.5" styleClass="columna-derecha" text="Estatus" />
                     </columns>
                 </TableView>
                 <HBox alignment="CENTER_RIGHT" prefHeight="45.0" prefWidth="366.0" spacing="15.0">
