@@ -11,61 +11,71 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane prefHeight="251.0" prefWidth="366.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.das6.serversockets.controller.cliente.PrincipalClienteController">
+<AnchorPane prefHeight="251.0" prefWidth="366.0" style="-fx-background-color: #ffffff;"
+            xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.das6.serversockets.controller.cliente.PrincipalClienteController"
+            onMousePressed="#onMousePressed"
+            onMouseDragged="#onMouseDragged">
     <children>
         <HBox alignment="CENTER_LEFT" prefHeight="34.0" prefWidth="366.0" style="-fx-background-color: #466276;">
             <children>
                 <Label prefHeight="34.0" prefWidth="286.0" text="Control de Tickets" textFill="WHITE">
                     <HBox.margin>
-                        <Insets left="15.0" />
+                        <Insets left="15.0"/>
                     </HBox.margin>
                 </Label>
-                <FontIcon fx:id="btnMinimizar" iconColor="WHITE" iconLiteral="bi-dash" iconSize="28" wrappingWidth="27.0" />
-                <FontIcon fx:id="btnCerrar" iconColor="WHITE" iconLiteral="bi-x" iconSize="28" wrappingWidth="27.0" />
+                <FontIcon fx:id="btnMinimizar" iconColor="WHITE" iconLiteral="bi-dash" iconSize="28"
+                          wrappingWidth="27.0"/>
+                <FontIcon fx:id="btnCerrar" iconColor="WHITE" iconLiteral="bi-x" iconSize="28" wrappingWidth="27.0"/>
             </children>
         </HBox>
         <VBox layoutY="38.0" prefHeight="213.0" prefWidth="366.0">
             <children>
                 <HBox alignment="CENTER_LEFT" prefHeight="5.0" prefWidth="336.0">
                     <children>
-                        <FontIcon iconLiteral="bi-receipt" iconSize="14" wrappingWidth="20.0" />
+                        <FontIcon iconLiteral="bi-receipt" iconSize="14" wrappingWidth="20.0"/>
                         <Label prefHeight="13.0" prefWidth="41.0" text="AA01">
                             <font>
-                                <Font name="System Bold" size="16.0" />
+                                <Font name="System Bold" size="16.0"/>
                             </font>
                         </Label>
                     </children>
                 </HBox>
                 <HBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="336.0">
                     <children>
-                        <FontIcon iconLiteral="bi-clock-history" iconSize="14" wrappingWidth="20.0" />
-                        <Label prefHeight="6.0" prefWidth="117.0" text="Tiempo Transcurrido:" />
-                        <Label fx:id="lbTiempoTranscurrido" prefHeight="0.0" prefWidth="45.0" text="00:00:00" />
+                        <FontIcon iconLiteral="bi-clock-history" iconSize="14" wrappingWidth="20.0"/>
+                        <Label prefHeight="6.0" prefWidth="117.0" text="Tiempo Transcurrido:"/>
+                        <Label fx:id="lbTiempoTranscurrido" prefHeight="0.0" prefWidth="45.0" text="00:00:00"/>
                     </children>
                     <VBox.margin>
-                        <Insets />
+                        <Insets/>
                     </VBox.margin>
                     <padding>
-                        <Insets bottom="10.0" />
+                        <Insets bottom="10.0"/>
                     </padding>
                 </HBox>
                 <TableView prefHeight="119.0" prefWidth="336.0" styleClass="tabla" stylesheets="@main.css">
                     <columns>
-                        <TableColumn fx:id="columnCheckBox" minWidth="7.0" prefWidth="25.0" styleClass="columna-izquierda" />
-                        <TableColumn fx:id="columnTicket" prefWidth="119.20000839233398" text="Ticket #" />
-                        <TableColumn fx:id="columnTiempo" minWidth="0.0" prefWidth="118.39994812011719" text="Tiempo" />
-                        <TableColumn fx:id="columnEstatus" prefWidth="68.5" styleClass="columna-derecha" text="Estatus" />
+                        <TableColumn fx:id="columnCheckBox" minWidth="7.0" prefWidth="25.0"
+                                     styleClass="columna-izquierda"/>
+                        <TableColumn fx:id="columnTicket" prefWidth="119.20000839233398" text="Ticket #"/>
+                        <TableColumn fx:id="columnTiempo" minWidth="0.0" prefWidth="118.39994812011719" text="Tiempo"/>
+                        <TableColumn fx:id="columnEstatus" prefWidth="68.5" styleClass="columna-derecha"
+                                     text="Estatus"/>
                     </columns>
                 </TableView>
                 <HBox alignment="CENTER_RIGHT" prefHeight="45.0" prefWidth="366.0" spacing="15.0">
                     <children>
-                        <Button fx:id="btnTransferir" mnemonicParsing="false" prefHeight="25.0" prefWidth="110.0" styleClass="boton-secundario" stylesheets="@main.css" text="Transferir" textFill="#1e262e" />
-                        <Button fx:id="btnSiguiente" mnemonicParsing="false" prefHeight="25.0" prefWidth="108.0" styleClass="boton-principal" stylesheets="@main.css" text="Siguiente" />
+                        <Button fx:id="btnTransferir" mnemonicParsing="false" prefHeight="25.0" prefWidth="110.0"
+                                styleClass="boton-secundario" stylesheets="@main.css" text="Transferir"
+                                textFill="#1e262e"/>
+                        <Button fx:id="btnSiguiente" mnemonicParsing="false" prefHeight="25.0" prefWidth="108.0"
+                                styleClass="boton-principal" stylesheets="@main.css" text="Siguiente"/>
                     </children>
                 </HBox>
             </children>
             <padding>
-                <Insets left="15.0" right="15.0" />
+                <Insets left="15.0" right="15.0"/>
             </padding>
         </VBox>
     </children>
