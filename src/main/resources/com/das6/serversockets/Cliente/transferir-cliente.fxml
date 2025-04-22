@@ -3,8 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -28,39 +26,40 @@
             <children>
                 <HBox alignment="CENTER_LEFT" prefHeight="5.0" prefWidth="336.0">
                     <children>
-                        <FontIcon fill="#466276" iconLiteral="bi-receipt" iconSize="14" wrappingWidth="20.0" />
-                        <Label prefHeight="13.0" prefWidth="41.0" stylesheets="@main.css" text="AA01">
+                        <FontIcon iconColor="#466276" iconLiteral="bi-chevron-double-right" iconSize="14" wrappingWidth="20.0" />
+                        <Label prefHeight="26.0" prefWidth="130.0" stylesheets="@main.css" text="Transferir Ticket">
                             <font>
                                 <Font name="System Bold" size="16.0" />
                             </font>
                         </Label>
                     </children>
                 </HBox>
-                <HBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="336.0">
-                    <children>
-                        <FontIcon fill="#466276" iconLiteral="bi-clock-history" iconSize="14" wrappingWidth="20.0" />
-                        <Label prefHeight="6.0" prefWidth="117.0" stylesheets="@main.css" text="Tiempo Transcurrido:" />
-                        <Label fx:id="lbTiempoTranscurrido" prefHeight="0.0" prefWidth="45.0" stylesheets="@main.css" text="00:00:00" />
-                    </children>
+                <HBox alignment="CENTER_LEFT" prefHeight="144.0" prefWidth="336.0">
                     <VBox.margin>
                         <Insets />
                     </VBox.margin>
                     <padding>
                         <Insets bottom="10.0" />
                     </padding>
+               <children>
+                  <VBox alignment="CENTER" prefHeight="144.0" prefWidth="336.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="336.0" stylesheets="@main.css" text="El siguiente ticket será transferido" textAlignment="CENTER" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="336.0" stylesheets="@main.css" text="a servicio al cliente." textAlignment="CENTER" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="336.0" stylesheets="@main.css" text="AA02" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="32.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="336.0" stylesheets="@main.css" text="¿Desea continuar?" textAlignment="CENTER" />
+                     </children>
+                  </VBox>
+               </children>
                 </HBox>
-                <TableView prefHeight="119.0" prefWidth="336.0" styleClass="tabla" stylesheets="@main.css">
-                    <columns>
-                        <TableColumn fx:id="columnCheckBox" minWidth="7.0" prefWidth="25.0" styleClass="columna-izquierda" />
-                        <TableColumn fx:id="columnTicket" prefWidth="119.20000839233398" text="Ticket #" />
-                        <TableColumn fx:id="columnTiempo" minWidth="0.0" prefWidth="118.39994812011719" text="Tiempo" />
-                        <TableColumn fx:id="columnEstatus" prefWidth="68.5" styleClass="columna-derecha" text="Estatus" />
-                    </columns>
-                </TableView>
                 <HBox alignment="CENTER_RIGHT" prefHeight="45.0" prefWidth="366.0" spacing="15.0">
                     <children>
-                        <Button fx:id="btnTransferir" mnemonicParsing="false" prefHeight="25.0" prefWidth="110.0" styleClass="boton-secundario" stylesheets="@main.css" text="Transferir" textFill="#1e262e" />
-                        <Button fx:id="btnSiguiente" mnemonicParsing="false" prefHeight="25.0" prefWidth="108.0" styleClass="boton-principal" stylesheets="@main.css" text="Siguiente" />
+                        <Button fx:id="btnTransferir" mnemonicParsing="false" prefHeight="25.0" prefWidth="110.0" styleClass="boton-secundario" stylesheets="@main.css" text="Cancelar" textFill="#1e262e" />
+                        <Button fx:id="btnSiguiente" mnemonicParsing="false" prefHeight="25.0" prefWidth="108.0" styleClass="boton-principal" stylesheets="@main.css" text="Aceptar" />
                     </children>
                 </HBox>
             </children>

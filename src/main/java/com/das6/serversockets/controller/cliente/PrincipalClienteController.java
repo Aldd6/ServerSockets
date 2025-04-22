@@ -31,4 +31,20 @@ public class PrincipalClienteController {
     }
 
 
+    private double xOffset = 0;
+    private double yOffset = 0;
+
+    @FXML
+    private void onMousePressed(MouseEvent event) {
+        xOffset = event.getSceneX();
+        yOffset = event.getSceneY();
+    }
+
+
+    @FXML
+    private void onMouseDragged(MouseEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setX(event.getScreenX() - xOffset);
+        stage.setY(event.getScreenY() - yOffset);
+    }
 }
