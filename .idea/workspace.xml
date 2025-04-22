@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4b53175e-67e1-4fc9-891d-05c7c1ff664f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/das6/serversockets/Cliente/exito-cliente.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/das6/serversockets/Login/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/das6/serversockets/Login/login-login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/das6/serversockets/Login/login-login.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +50,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "Local/FeatureIvan",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Salvador Hernández/IdeaProjects/ServerSockets/src/main/resources/com/das6/serversockets/Cliente",
+    "last_opened_file_path": "C:/Users/Salvador Hernández/IdeaProjects/ServerSockets/src/main/resources/com/das6/serversockets/Login",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -60,6 +62,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Salvador Hernández\IdeaProjects\ServerSockets\src\main\resources\com\das6\serversockets\Login" />
       <recent name="C:\Users\Salvador Hernández\IdeaProjects\ServerSockets\src\main\resources\com\das6\serversockets\Cliente" />
     </key>
   </component>
