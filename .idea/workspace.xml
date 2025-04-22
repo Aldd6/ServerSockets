@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4b53175e-67e1-4fc9-891d-05c7c1ff664f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/das6/serversockets/Cliente/transferir-cliente.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/das6/serversockets/Cliente/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/das6/serversockets/Cliente/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/das6/serversockets/Cliente/principal-cliente.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/das6/serversockets/Cliente/principal-cliente.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/das6/serversockets/Cliente/exito-cliente.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
