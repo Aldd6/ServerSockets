@@ -5,6 +5,9 @@ module com.das6.serversockets {
     requires org.kordamp.ikonli.core;
     requires org.kordamp.ikonli.bootstrapicons;
     requires org.kordamp.bootstrapfx.core;
+    requires org.json;
+    requires java.sql;
+    requires java.naming;
 
     opens com.das6.serversockets.controller.cliente to javafx.fxml;
 
