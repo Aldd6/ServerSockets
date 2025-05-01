@@ -164,7 +164,7 @@ public class Client {
             JSONObject user = SocketJsonUtil.receive(client.in);
             System.out.println(user);
             String command;
-            if(user.getString("type").equals("KIOSK")) {
+            if(user.getJSONObject("data").getString("type").equals("KIOSK")) {
                 while(client.isClientConnected()) {
                     command = sc.nextLine();
                     if(command.equals("generate")) {
@@ -176,7 +176,7 @@ public class Client {
                     }
                 }
             }
-            if(user.getString("type").equals("SCREEN")) {
+            if(user.getJSONObject("data").getString("type").equals("SCREEN")) {
                 while(client.isClientConnected()) {
                     System.out.println(SocketJsonUtil.receive(client.in));
                 }

@@ -111,16 +111,21 @@ public class TicketDispatcher {
             return StatusCode.INTERNAL_ERROR.toJsonWithParams(params);
         }
 
-        ticketToTransfer.ifPresent(t -> {
-            if(t.getRefClient() == null) {
-                dispatchNewTicket(newType, TicketFactory.createTicket(newType));
-            }else {
-                dispatchNewTicket(newType,TicketFactory.createTicket(newType, t.getRefClient()));
-            }
-        });
+        Ticket newTicket;
 
         if(ticketToTransfer.isPresent()) {
-            params.put("code",ticket);
+
+            String refClient = ticketToTransfer.get().getRefClient();
+
+            if(refClient == null) {
+                newTicket = TicketFactory.createTicket(newType);
+            }else {
+                newTicket = TicketFactory.createTicket(newType, refClient);
+            }
+
+            dispatchNewTicket(newType, newTicket);
+
+            params.put("code",newTicket.getCode());
             return StatusCode.OK.toJsonWithParams(params);
         }else {
             params.put("code",JSONObject.NULL);

@@ -41,7 +41,9 @@ public class ClientHandler implements Runnable {
                 isActiveUser = true;
                 TicketDispatcher.registerClient(this.userType,this);
 
-                SocketJsonUtil.send(out, this.user);
+                if(hasAsignedQueue()) {
+                    this.getUpdatedQueue();
+                }
 
                 while(true) {
                     JSONObject request = SocketJsonUtil.receive(in);
@@ -64,23 +66,34 @@ public class ClientHandler implements Runnable {
         }
     }
 
+    private boolean hasAsignedQueue() {
+        return this.userType != UserType.ADMIN && this.userType != UserType.KIOSK;
+    }
+
     private int logInRequest(JSONObject request) {
 
+        params.put("action_type","login");
+
         JSONObject user = Repository.lookUpUserByCredentials(request);
+
         if(user.getInt("status") == 401) {
             try {
-                params.put("action_type","login");
                 SocketJsonUtil.send(out, StatusCode.UNAUTHORIZED.toJsonWithParams(params));
                 closeInternalConnection();
-                return user.getInt("status");
+                return StatusCode.UNAUTHORIZED.getCode();
             }catch(IOException e) {
                 System.out.println(e.getMessage());
             }
+        }else {
+            try {
+                this.user = user.getJSONObject("data");
+                this.userType = UserType.convertTypeFromString(user.getJSONObject("data").getString("type"));
+                SocketJsonUtil.send(out, StatusCode.OK.toJsonWithData(user.getJSONObject("data"),params));
+            }catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
         }
-
-        this.user = user.getJSONObject("data");
-        this.userType = UserType.convertTypeFromString(user.getJSONObject("data").getString("type"));
-        return user.getInt("status");
+        return StatusCode.OK.getCode();
     }
 
     private void closeClientConnection() {
@@ -227,6 +240,17 @@ public class ClientHandler implements Runnable {
                 }catch (IOException e) {
                     System.out.println(e.getMessage());
                 }
+        }
+    }
+
+    private void adminHandler(JSONObject request) {
+        params.clear();
+        String action = request.getString("action");
+        switch(action) {
+            case "create_user":
+                break;
+            case "delete_user":
+                break;
         }
     }
 
