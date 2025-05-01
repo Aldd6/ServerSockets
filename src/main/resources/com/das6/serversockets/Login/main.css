@@ -1,0 +1,64 @@
+.boton-principal {
+    -fx-background-color: #50748a;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 25;
+}
+
+.boton-principal:hover {
+    -fx-background-color: #466276;
+}
+
+.boton-principal:pressed {
+    -fx-background-color: #3d5161;
+}
+
+.boton-secundario {
+    -fx-background-color: #c4d4dd;
+    -fx-text-fill: #1e262e;
+    -fx-font-weight: bold;
+    -fx-background-radius: 25;
+}
+
+.boton-secundario:hover {
+    -fx-background-color: #9cb7c4;
+}
+
+.boton-secundario:pressed {
+    -fx-background-color: #6c91a4;
+}
+
+
+.table-view {
+    -fx-background-color: #e0e9ed;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+}
+
+.column-header {
+    -fx-background-color: #466276;
+}
+
+.columna-izquierda {
+    -fx-background-radius: 10 0 0 0;
+}
+
+.columna-derecha {
+    -fx-background-radius: 0 10 0 0;
+}
+
+
+.table-view .column-header .label {
+    -fx-text-fill: white;
+}
+
+.label {
+    -fx-text-fill: #466276;
+}
+
+.text-field,
+.password-field {
+    -fx-text-fill: #1e262e;
+    -fx-background-color: white;
+    -fx-background-radius: 25;
+}
