@@ -42,6 +42,9 @@ public class ClientHandler implements Runnable {
                 TicketDispatcher.registerClient(this.userType,this);
 
                 SocketJsonUtil.send(out, this.user);
+                if(hasAsignedQueue()) {
+                    this.getUpdatedQueue();
+                }
 
                 while(true) {
                     JSONObject request = SocketJsonUtil.receive(in);
@@ -62,6 +65,10 @@ public class ClientHandler implements Runnable {
                 System.out.println(LocalDateTime.now() + ": An error in communication has occurred, session terminated\n" + e);
             }
         }
+    }
+
+    private boolean hasAsignedQueue() {
+        return this.userType != UserType.ADMIN && this.userType != UserType.KIOSK;
     }
 
     private int logInRequest(JSONObject request) {
