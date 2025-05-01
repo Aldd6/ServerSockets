@@ -72,14 +72,91 @@ public class Client {
         }
     }
 
-    public static void main(String[] args) {
+    public void iniciarSesion(JSONObject creds){
         Scanner sc = new Scanner(System.in);
+        try {
+            SocketJsonUtil.send(out, creds);
+            JSONObject user = SocketJsonUtil.receive(in);
+            System.out.println(user);
+
+            String command;
+            if(user.getString("type").equals("KIOSK")) {
+                while(isClientConnected()) {
+                    command = sc.nextLine();
+                    if(command.equals("generate")) {
+                        JSONObject ticket = new JSONObject();
+                        ticket.put("action","new_ticket");
+                        ticket.put("type","CHECKOUT");
+                        ticket.put("ref_client",JSONObject.NULL);
+                        SocketJsonUtil.send(out, ticket);
+                    }
+                }
+            }
+            if(user.getString("type").equals("SCREEN")) {
+                while(isClientConnected()) {
+                    System.out.println(SocketJsonUtil.receive(in));
+                }
+            }
+            new Thread(() -> {
+                try {
+                    while(isClientConnected()) {
+                        JSONObject response = SocketJsonUtil.receive(in);
+                        switch(response.getString("action_type")) {
+                            case "update", "finished_ticket", "transfer_ticket":
+                                System.out.println(response);
+                                break;
+                            case "polled_ticket":
+                                setTicket(response.getJSONObject("data"));
+                                System.out.println(getTicket());
+                                break;
+                            default:
+                                System.out.println(response);
+                                break;
+                        }
+                    }
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }).start();
+            while(isClientConnected()) {
+                command = sc.nextLine();
+                if(command.equals("poll")) {
+                    JSONObject request = new JSONObject();
+                    request.put("action","get_ticket");
+                    SocketJsonUtil.send(out, request);
+                }else if(command.equals("finish")) {
+                    JSONObject request = new JSONObject();
+                    request.put("action","finish_ticket");
+                    request.put("no_ticket", getTicket().getString("code"));
+                    SocketJsonUtil.send(out, request);
+                }else if(command.equals("transfer")) {
+                    JSONObject request = new JSONObject();
+                    request.put("action","transfer_ticket");
+                    request.put("no_ticket", getTicket().getString("code"));
+                    request.put("new_type","SERVICE");
+                    SocketJsonUtil.send(out, request);
+                }
+            }
+        }catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    /* public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
         Client client = new Client();
+
         System.out.print("ingrese su usuario: ");
+
         String usuario = sc.nextLine();
+
         System.out.print("ingrese su contrasenia: ");
+
         String contrasenia = sc.nextLine();
+
         JSONObject creds = new JSONObject();
+
         creds.put("username", usuario);
         creds.put("password", contrasenia);
         try {
@@ -147,6 +224,6 @@ public class Client {
         }catch (IOException e) {
             System.out.println(e.getMessage());
         }
-    }
+    }*/
 
 }
