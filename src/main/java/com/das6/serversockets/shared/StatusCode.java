@@ -3,6 +3,8 @@ package com.das6.serversockets.shared;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.HashMap;
+
 public enum StatusCode {
     OK(200, "Successful Operation"),
     CREATED(201, "Created Resource"),
@@ -50,6 +52,26 @@ public enum StatusCode {
     public JSONObject toJsonWithData(JSONArray data) {
         JSONObject response = toJSON();
         response.put("data", data);
+        return response;
+    }
+
+    public JSONObject toJsonWithData(JSONArray data, HashMap<String,Object> parameters) {
+        JSONObject response = toJSON();
+        parameters.forEach(response::put);
+        response.put("data", data);
+        return response;
+    }
+
+    public JSONObject toJsonWithData(JSONObject data, HashMap<String,Object> parameters) {
+        JSONObject response = toJSON();
+        parameters.forEach(response::put);
+        response.put("data", data);
+        return response;
+    }
+
+    public JSONObject toJsonWithParams(HashMap<String,Object> parameters) {
+        JSONObject response = toJSON();
+        parameters.forEach(response::put);
         return response;
     }
 }

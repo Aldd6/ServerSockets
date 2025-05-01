@@ -41,6 +41,7 @@ public class Repository {
                 return StatusCode.UNAUTHORIZED.toJSON("Username or password is incorrect");
             }
         }catch(SQLException e) {
+            System.out.println("la exception se genero en el metodo lookUpUser en la clase Repository");
             System.out.println(e.getMessage());
             return StatusCode.INTERNAL_ERROR.toJSON();
         }
@@ -127,13 +128,13 @@ public class Repository {
                 ps.setInt(1,log.getInt("no_user"));
                 ps.setString(2, log.getString("no_ticket"));
                 ps.setString(3, log.getString("ref_client"));
-                ps.setTime(4, Time.valueOf(log.getString("time_atention")));
+                ps.setTime(4, (Time) log.get("time_atention"));
 
             }else {
                 ps = conn.prepareStatement(psInsertLogWithNull);
                 ps.setInt(1,log.getInt("no_user"));
                 ps.setString(2, log.getString("no_ticket"));
-                ps.setTime(3, Time.valueOf(log.getString("time_atention")));
+                ps.setTime(3, (Time) log.get("time_atention"));
             }
 
 

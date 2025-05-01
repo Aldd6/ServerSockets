@@ -16,9 +16,6 @@ public class Server {
     private int communicationPort;
 
     private Properties properties;
-    private Queue<String> checkOutQueue;
-    private Queue<String> frontDeskQueue;
-    private Queue<String> generalQueue;
 
     public Server() throws IOException {
         loadProperties();
@@ -26,10 +23,7 @@ public class Server {
     }
 
     public void run() {
-        checkOutQueue = new ConcurrentLinkedQueue<>();
-        frontDeskQueue = new ConcurrentLinkedQueue<>();
-        generalQueue = new ConcurrentLinkedQueue<>();
-
+        System.out.println(LocalDateTime.now() + ": Server listening on port " + communicationPort);
         while(true) {
             clientSocket = null;
             try {
@@ -38,21 +32,40 @@ public class Server {
                 System.out.println(LocalDateTime.now() + ": Incoming connection from " + clientSocket.getInetAddress() + " at port " + clientSocket.getPort());
                 inStream = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                 outStream = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
-
+                Thread clientThread = new Thread(new ClientHandler(clientSocket, inStream, outStream));
+                clientThread.start();
             }catch(IOException e) {
-
+                System.out.println(e.getMessage());
             }
         }
     }
 
     private void loadProperties() {
+        properties = new Properties();
         try {
-            properties = new Properties();
-            properties.load(Server.class.getResourceAsStream("config.properties"));
+            properties.load(Server.class.getClassLoader().getResourceAsStream("config.properties"));
             communicationPort = Integer.parseInt(properties.getProperty("SERVER_COMMUNICATION_PORT"));
         }catch(IOException e) {
             System.out.println(e.getMessage());
         }
+    }
 
+    private void stop() {
+        try {
+            if(serverSocket != null && !serverSocket.isClosed()) {
+                serverSocket.close();
+            }
+        }catch (IOException e) {
+            System.out.println(LocalDateTime.now() + ": Closing server socket");
+        }
+    }
+
+    public static void main(String[] args) {
+        try {
+            Server server = new Server();
+            server.run();
+        }catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
