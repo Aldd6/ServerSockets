@@ -1,5 +1,6 @@
 package com.das6.serversockets.controller.cliente;
 
+import com.das6.serversockets.WindowsUtil;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -16,35 +17,18 @@ public class PrincipalClienteController {
 
     @FXML
     public void initialize(){
-        btnCerrar.setOnMouseClicked(event -> cerrarVentana(event));
-        btnMinimizar.setOnMouseClicked(event -> minimizarVentana(event));
+        btnCerrar.setOnMouseClicked(WindowsUtil::cerrarVentana);
+        btnMinimizar.setOnMouseClicked(WindowsUtil::minimizarVenta);
     }
-
-    private void minimizarVentana(MouseEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setIconified(true);
-    }
-
-    private void cerrarVentana(MouseEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.close();
-    }
-
-
-    private double xOffset = 0;
-    private double yOffset = 0;
 
     @FXML
-    private void onMousePressed(MouseEvent event) {
-        xOffset = event.getSceneX();
-        yOffset = event.getSceneY();
+    private void onMousePressed(MouseEvent event){
+        WindowsUtil.onMousePressed(event);
     }
-
 
     @FXML
-    private void onMouseDragged(MouseEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setX(event.getScreenX() - xOffset);
-        stage.setY(event.getScreenY() - yOffset);
+    private  void onMouseDragged(MouseEvent event){
+        WindowsUtil.onMouseDragged(event);
     }
+
 }
