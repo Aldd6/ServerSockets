@@ -72,14 +72,15 @@ public class Client {
         }
     }
 
-    public void iniciarSesion(JSONObject creds){
-        Scanner sc = new Scanner(System.in);
+    public JSONObject iniciarSesion(JSONObject creds){
+        // Scanner sc = new Scanner(System.in);
         try {
             SocketJsonUtil.send(out, creds);
             JSONObject user = SocketJsonUtil.receive(in);
             System.out.println(user);
 
-            String command;
+            return user;
+            /*String command;
             if(user.getString("type").equals("KIOSK")) {
                 while(isClientConnected()) {
                     command = sc.nextLine();
@@ -136,11 +137,19 @@ public class Client {
                     request.put("new_type","SERVICE");
                     SocketJsonUtil.send(out, request);
                 }
-            }
+            }*/
         }catch (IOException e) {
             System.out.println(e.getMessage());
+            return  null;
         }
     }
+
+    private void iniciarEscucha(){
+
+    }
+
+
+
     /* public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
