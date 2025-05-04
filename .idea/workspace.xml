@@ -5,16 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4b53175e-67e1-4fc9-891d-05c7c1ff664f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/das6/serversockets/controller/login/ErrorController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/das6/serversockets/utilities/CargaUtilidad.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/das6/serversockets/Cliente/services-cliente.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/das6/serversockets/cargando.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/das6/serversockets/controller/kiosko/KioskoController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/das6/serversockets/Kiosko/kiosko.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/das6/serversockets/Kiosko/main.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/das6/serversockets/controller/login/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/das6/serversockets/controller/login/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/das6/serversockets/server/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/das6/serversockets/server/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/das6/serversockets/Cliente/principal-cliente.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/das6/serversockets/Cliente/principal-cliente.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/das6/serversockets/Login/error-login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/das6/serversockets/Login/error-login.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,28 +53,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Client.executor&quot;: &quot;Run&quot;,
-    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Server.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Local/FeatureIvan&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Salvador Hernández/IdeaProjects/ServerSockets/src/main/resources/com/das6/serversockets/Cliente&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Client.executor": "Run",
+    "Application.HelloApplication.executor": "Run",
+    "Application.Server.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "Local/FeatureIvan",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Salvador Hernández/IdeaProjects/ServerSockets/src/main/resources/com/das6/serversockets/Kiosko",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Salvador Hernández\IdeaProjects\ServerSockets\src\main\resources\com\das6\serversockets\Kiosko" />
       <recent name="C:\Users\Salvador Hernández\IdeaProjects\ServerSockets\src\main\resources\com\das6\serversockets\Cliente" />
       <recent name="C:\Users\Salvador Hernández\IdeaProjects\ServerSockets\src\main\resources\com\das6\serversockets\Login" />
     </key>
@@ -100,7 +97,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="HelloApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="HelloApplication" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.das6.serversockets.HelloApplication" />
       <module name="ServerSockets" />
       <extension name="coverage">
@@ -182,7 +179,7 @@
       <workItem from="1745372305427" duration="1974000" />
       <workItem from="1746149294704" duration="1775000" />
       <workItem from="1746236858164" duration="5583000" />
-      <workItem from="1746310712955" duration="2895000" />
+      <workItem from="1746310712955" duration="7442000" />
     </task>
     <servers />
   </component>

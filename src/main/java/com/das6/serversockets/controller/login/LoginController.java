@@ -108,7 +108,7 @@ public class LoginController {
                     cargarVista("/com/das6/serversockets/Cliente/services-cliente.fxml", 366, 251, "SERVICES");
                     break;
                 case "KIOSK":
-                    cargarVista("/com/das6/serversockets/Kiosko/vistaKiosko.fxml", 1280, 720, "KIOSK");
+                    cargarVista("/com/das6/serversockets/Kiosko/kiosko.fxml", 1080, 720, "KIOSK");
                     break;
                 case "SCREEN":
                     cargarVista("/com/das6/serversockets/Cliente/principal-cliente.fxml", 366, 251, "CHECK");
