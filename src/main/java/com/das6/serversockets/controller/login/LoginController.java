@@ -2,29 +2,19 @@ package com.das6.serversockets.controller.login;
 
 import com.das6.serversockets.WindowsUtil;
 import com.das6.serversockets.server.Client;
-import com.das6.serversockets.shared.SocketJsonUtil;
+import com.das6.serversockets.utilities.ControladorBase;
+import com.das6.serversockets.utilities.VistaUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.geometry.Rectangle2D;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.stage.Screen;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import org.json.JSONObject;
 import org.kordamp.ikonli.javafx.FontIcon;
 
-import java.io.IOException;
-
-public class LoginController {
+public class LoginController extends ControladorBase {
     @FXML
     private FontIcon btnCerrar;
 
@@ -102,16 +92,16 @@ public class LoginController {
 
             switch (tipo) {
                 case "CHECKOUT":
-                    cargarVista("/com/das6/serversockets/Cliente/principal-cliente.fxml", 366, 251, "CHECKOUT");
+                    VistaUtil.cambiar(stage, "/com/das6/serversockets/Cliente/principal-cliente.fxml", 366, 251, "CHECKOUT");
                     break;
                 case "SERVICE":
-                    cargarVista("/com/das6/serversockets/Cliente/services-cliente.fxml", 366, 251, "SERVICES");
+                    VistaUtil.cambiar(stage, "/com/das6/serversockets/Cliente/services-cliente.fxml", 366, 251, "SERVICES");
                     break;
                 case "KIOSK":
-                    cargarVista("/com/das6/serversockets/Kiosko/kiosko.fxml", 1080, 720, "KIOSK");
+                    VistaUtil.cambiar(stage, "/com/das6/serversockets/Kiosko/kiosko.fxml", 1080, 720, "KIOSK");
                     break;
                 case "SCREEN":
-                    cargarVista("/com/das6/serversockets/Cliente/principal-cliente.fxml", 366, 251, "CHECK");
+                    VistaUtil.cambiar(stage, "/com/das6/serversockets/Cliente/principal-cliente.fxml", 366, 251, "CHECK");
                     break;
                 default:
                     System.out.println("VISTA POR DEFECTO");
@@ -119,12 +109,11 @@ public class LoginController {
             }
 
         } else {
-            cargarVista("/com/das6/serversockets/Login/error-login.fxml", 366, 251, "ERROR");
+            VistaUtil.cambiar(stage, "/com/das6/serversockets/Login/error-login.fxml", 366, 251, "ERROR");
         }
-
     }
-
-    private void cargarVista(String rutaFXML, double anchoVentana, double altoVentana, String tipo) {
+}
+    /*private void cargarVista(String rutaFXML, double anchoVentana, double altoVentana, String tipo) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(rutaFXML));
             Parent root = loader.load();
@@ -171,5 +160,5 @@ public class LoginController {
             System.out.println("Error al cargar la vista: " + rutaFXML);
             throw new RuntimeException(e);
         }
-    }
-}
+    }*/
+
