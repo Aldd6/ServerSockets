@@ -1,6 +1,9 @@
 package com.das6.serversockets.server;
 
+import com.das6.serversockets.controller.cliente.PrincipalClienteController;
 import com.das6.serversockets.shared.SocketJsonUtil;
+import javafx.application.Platform;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.*;
@@ -20,6 +23,8 @@ public class Client {
     private static Properties properties;
 
     private JSONObject ticket;
+
+    private PrincipalClienteController controller;
 
     private static void loadProperties() {
         properties = new Properties();
@@ -97,6 +102,12 @@ public class Client {
                         case "finished_ticket":
                         case "transfer_ticket":
                             System.out.println(response);
+
+                            if (controller != null) {
+                                JSONArray tickets = response.getJSONArray("data");
+                                Platform.runLater(() -> controller.actualizarTabla(tickets));
+                            }
+
                             break;
                         case "polled_ticket":
                             setTicket(response.getJSONObject("data"));
@@ -181,5 +192,9 @@ public class Client {
         } catch (IOException e) {
             System.out.println("Error al transferir ticket: " + e.getMessage());
         }
+    }
+
+    public void setController(PrincipalClienteController controller) {
+        this.controller = controller;
     }
 }

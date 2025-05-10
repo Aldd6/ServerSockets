@@ -32,15 +32,6 @@
                         </Label>
                     </children>
                 </HBox>
-                <HBox alignment="CENTER" prefHeight="34.0" prefWidth="1050.0">
-                    <children>
-                        <Label fx:id="lbNumeroTicket" alignment="TOP_CENTER" prefHeight="68.0" prefWidth="1050.0" stylesheets="@main.css" text="AA01">
-                            <font>
-                                <Font name="System Bold" size="64.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </HBox>
             <HBox alignment="CENTER" prefHeight="78.0" prefWidth="1050.0">
                <children>
                   <FontIcon fill="#198754" iconLiteral="bi-check-circle">

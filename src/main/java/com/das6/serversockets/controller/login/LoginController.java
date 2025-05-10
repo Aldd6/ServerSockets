@@ -97,6 +97,7 @@ public class LoginController extends ControladorBase {
                 case "CHECKOUT":
                     PrincipalClienteController controllerCliente = VistaUtil.cambiar(stage, "/com/das6/serversockets/Cliente/principal-cliente.fxml", 366, 251, "CHECKOUT");
                     controllerCliente.setClient(client);
+                    client.setController(controllerCliente);
                     break;
                 case "SERVICE":
                     VistaUtil.cambiar(stage, "/com/das6/serversockets/Cliente/services-cliente.fxml", 366, 251, "SERVICES");

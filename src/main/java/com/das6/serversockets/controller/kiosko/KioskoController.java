@@ -75,7 +75,7 @@ public class KioskoController extends ControladorBase {
     private void mostrarVistaExitoTemporal() {
         new Thread(() -> {
 
-            String codigo = "1";
+//            String codigo = "1";
 
             Platform.runLater(() -> {
                 Stage stage = (Stage) btnCaja.getScene().getWindow();
@@ -88,7 +88,7 @@ public class KioskoController extends ControladorBase {
                         "EXITO"
                 );
 
-                controller.setNumeroTicket(codigo);
+//                controller.setNumeroTicket(codigo);
 
                 PauseTransition pausa = new PauseTransition(Duration.seconds(3));
                 pausa.setOnFinished(e -> {
