@@ -29,12 +29,12 @@
                 <HBox alignment="CENTER_LEFT" prefHeight="5.0" prefWidth="336.0">
                     <children>
                         <FontIcon fill="#466276" iconLiteral="bi-receipt" iconSize="14" wrappingWidth="20.0" />
-                        <Label fx:id="lbNumTicket" prefHeight="25.0" prefWidth="218.0" stylesheets="@main.css" text="AA01">
+                        <Label fx:id="lbNumTicket" prefHeight="26.0" prefWidth="228.0" stylesheets="@main.css" text="AA01">
                             <font>
                                 <Font name="System Bold" size="16.0" />
                             </font>
                         </Label>
-                  <Label alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="96.0" stylesheets="@main.css" text="Cajero" textAlignment="RIGHT">
+                  <Label fx:id="lbNumTicket1" alignment="CENTER_RIGHT" prefHeight="26.0" prefWidth="165.0" stylesheets="@main.css" text="Servicio al Cliente" textAlignment="RIGHT">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>

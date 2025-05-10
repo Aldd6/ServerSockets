@@ -35,10 +35,10 @@ public class Client {
     public Client() {
         loadProperties();
         try {
-            this.socket = new Socket(HOST,PORT);
+            this.socket = new Socket(HOST, PORT);
             this.in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             this.out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-        }catch (IOException e) {
+        } catch (IOException e) {
             freeResources();
             System.out.println(e.getMessage());
         }
@@ -58,28 +58,138 @@ public class Client {
 
     private void freeResources() {
         try {
-            if(socket != null) {
+            if (socket != null) {
                 socket.close();
             }
-            if(in != null) {
+            if (in != null) {
                 in.close();
             }
-            if(out != null) {
+            if (out != null) {
                 out.close();
             }
-        }catch (IOException e) {
+        } catch (IOException e) {
             System.out.println(e.getMessage());
         }
     }
 
-    public static void main(String[] args) {
+    public JSONObject iniciarSesion(JSONObject creds) {
+        try {
+            SocketJsonUtil.send(out, creds);
+            JSONObject user = SocketJsonUtil.receive(in);
+            System.out.println(user);
+
+            return user;
+
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+    public void escucharServidor() {
+        new Thread(() -> {
+            try {
+                while (isClientConnected()) {
+                    JSONObject response = SocketJsonUtil.receive(in);
+                    switch (response.getString("action_type")) {
+                        case "update":
+                        case "finished_ticket":
+                        case "transfer_ticket":
+                            System.out.println(response);
+                            break;
+                        case "polled_ticket":
+                            setTicket(response.getJSONObject("data"));
+                            System.out.println(getTicket());
+                            break;
+                        default:
+                            System.out.println(response);
+                            break;
+                    }
+                }
+            } catch (IOException e) {
+                System.out.println("Error al escuchar servidor: " + e.getMessage());
+            }
+        }).start();
+    }
+
+    public void generarTicket(String tipo) {
+        try {
+            JSONObject ticket = new JSONObject();
+            ticket.put("action", "new_ticket");
+            ticket.put("type", tipo);
+            ticket.put("ref_client", JSONObject.NULL);
+            SocketJsonUtil.send(out, ticket);
+            System.out.println("Ticket generado para tipo " + tipo);
+        } catch (IOException ex) {
+            System.out.println("Error al generar ticket: " + ex.getMessage());
+        }
+    }
+
+    public void iniciarEscuchaPantalla() {
+        new Thread(() -> {
+            try {
+                while (isClientConnected()) {
+                    JSONObject data = SocketJsonUtil.receive(in);
+                    System.out.println(data);
+                }
+
+            } catch (IOException ex) {
+                System.out.println("Error al escuchar la pantalla: " + ex.getMessage());
+            }
+        }).start();
+
+    }
+
+    public void solicitarTicket() {
+        try {
+            JSONObject request = new JSONObject();
+            request.put("action", "get_ticket");
+            SocketJsonUtil.send(out, request);
+        } catch (IOException e) {
+            System.out.println("Error al solicitar ticket: " + e.getMessage());
+        }
+    }
+
+    public void finalizarTicket(String code) {
+        try {
+            JSONObject request = new JSONObject();
+            request.put("action", "finish_ticket");
+            request.put("no_ticket", code);
+            SocketJsonUtil.send(out, request);
+        } catch (IOException e) {
+            System.out.println("Error al finalizar ticket: " + e.getMessage());
+        }
+    }
+
+    public void transferirTicket(String code, String nuevoTipo) {
+        try {
+            JSONObject request = new JSONObject();
+            request.put("action", "transfer_ticket");
+            request.put("no_ticket", code);
+            request.put("new_type", nuevoTipo);
+            SocketJsonUtil.send(out, request);
+        } catch (IOException e) {
+            System.out.println("Error al transferir ticket: " + e.getMessage());
+        }
+    }
+
+
+    /* public static void main(String[] args) {
+
         Scanner sc = new Scanner(System.in);
+
         Client client = new Client();
+
         System.out.print("ingrese su usuario: ");
+
         String usuario = sc.nextLine();
+
         System.out.print("ingrese su contrasenia: ");
+
         String contrasenia = sc.nextLine();
+
         JSONObject creds = new JSONObject();
+
         creds.put("username", usuario);
         creds.put("password", contrasenia);
         try {
@@ -147,6 +257,6 @@ public class Client {
         }catch (IOException e) {
             System.out.println(e.getMessage());
         }
-    }
+    }*/
 
 }

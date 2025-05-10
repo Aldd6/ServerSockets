@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<AnchorPane onMouseDragged="#onMouseDragged" onMousePressed="#onMousePressed" prefHeight="720.0" prefWidth="1080.0"
+            xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.das6.serversockets.controller.kiosko.KioskoController">
+    <children>
+        <HBox alignment="CENTER_LEFT" prefHeight="34.0" prefWidth="1080.0" style="-fx-background-color: #466276;">
+            <children>
+                <Label prefHeight="34.0" prefWidth="1005.0" text="Control de Tickets" textFill="WHITE">
+                    <HBox.margin>
+                        <Insets left="15.0"/>
+                    </HBox.margin>
+                </Label>
+                <FontIcon fx:id="btnMinimizar" iconColor="WHITE" iconLiteral="bi-dash" iconSize="28"
+                          wrappingWidth="27.0"/>
+                <FontIcon fx:id="btnCerrar" iconColor="WHITE" iconLiteral="bi-x" iconSize="28" wrappingWidth="27.0"/>
+            </children>
+        </HBox>
+        <VBox alignment="CENTER" layoutY="32.0" prefHeight="687.0" prefWidth="1080.0">
+            <children>
+                <HBox alignment="BOTTOM_CENTER" prefHeight="29.0" prefWidth="1050.0">
+                    <children>
+                        <Label fx:id="lbNumTicket1" prefHeight="38.0" prefWidth="191.0" stylesheets="@main.css"
+                               text="¡Bienvenido!">
+                            <font>
+                                <Font name="System Bold" size="32.0"/>
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" prefHeight="34.0" prefWidth="1050.0">
+                    <children>
+                        <Label fx:id="lbNumTicket" alignment="TOP_CENTER" prefHeight="22.0" prefWidth="341.0"
+                               stylesheets="@main.css" text="Selecciona un servicio.">
+                            <font>
+                                <Font name="System Bold" size="32.0"/>
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" prefHeight="273.0" prefWidth="1050.0" spacing="15.0">
+                    <children>
+                        <Button fx:id="btnCaja" contentDisplay="TOP" mnemonicParsing="false" prefHeight="250.0"
+                                prefWidth="300.0" styleClass="boton-secundario" stylesheets="@main.css" text="Caja"
+                                textFill="#1e262e" onAction="#generarTicketCaja">
+                            <graphic>
+                                <FontIcon fill="#466276" iconColor="#1e262e" iconLiteral="bi-person-square"
+                                          iconSize="42" text="" textAlignment="CENTER" wrappingWidth="37.0"/>
+                            </graphic>
+                            <font>
+                                <Font size="28.0"/>
+                            </font>
+                        </Button>
+                        <Button fx:id="btnServicio" contentDisplay="TOP" mnemonicParsing="false" prefHeight="250.0"
+                                prefWidth="300.0" styleClass="boton-secundario" stylesheets="@main.css"
+                                text="Atención al cliente" textFill="#1e262e" onAction="#generarTicketServicio">
+                            <graphic>
+                                <FontIcon fill="#466276" iconColor="#1e262e" iconLiteral="bi-people" iconSize="42"
+                                          textAlignment="CENTER" wrappingWidth="37.0"/>
+                            </graphic>
+                            <font>
+                                <Font size="28.0"/>
+                            </font>
+                        </Button>
+                    </children>
+                </HBox>
+            </children>
+            <padding>
+                <Insets left="15.0" right="15.0"/>
+            </padding>
+        </VBox>
+    </children>
+</AnchorPane>
