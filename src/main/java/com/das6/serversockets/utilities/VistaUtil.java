@@ -55,7 +55,7 @@ public class VistaUtil {
             clip.setArcHeight(20);
             root.setClip(clip);
 
-            return controller;
+            return loader.getController();
 
         } catch (IOException e) {
             System.out.println("Error al cambiar vista a: " + rutaFXML);

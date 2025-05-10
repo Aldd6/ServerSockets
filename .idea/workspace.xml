@@ -5,14 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4b53175e-67e1-4fc9-891d-05c7c1ff664f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/das6/serversockets/Kiosko/error_Kiosko.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/das6/serversockets/Kiosko/exitoKiosko.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/das6/serversockets/controller/kiosko/ErrorKioskoController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/das6/serversockets/controller/kiosko/ExitoKioskoController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/das6/serversockets/controller/cliente/PrincipalClienteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/das6/serversockets/controller/cliente/PrincipalClienteController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/das6/serversockets/controller/kiosko/KioskoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/das6/serversockets/controller/kiosko/KioskoController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/das6/serversockets/controller/login/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/das6/serversockets/controller/login/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/das6/serversockets/server/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/das6/serversockets/server/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/das6/serversockets/server/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/das6/serversockets/server/ClientHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/das6/serversockets/utilities/VistaUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/das6/serversockets/utilities/VistaUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/das6/serversockets/Kiosko/kiosko.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/das6/serversockets/Kiosko/kiosko.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/das6/serversockets/Kiosko/exitoKiosko.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/das6/serversockets/Kiosko/exitoKiosko.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -183,7 +184,7 @@
       <workItem from="1746236858164" duration="5583000" />
       <workItem from="1746310712955" duration="10841000" />
       <workItem from="1746753014681" duration="172000" />
-      <workItem from="1746844488817" duration="8902000" />
+      <workItem from="1746844488817" duration="19189000" />
     </task>
     <servers />
   </component>
@@ -222,12 +223,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/das6/serversockets/server/Client.java</url>
-          <line>242</line>
+          <line>252</line>
           <option name="timeStamp" value="23" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/das6/serversockets/server/Client.java</url>
-          <line>219</line>
+          <line>229</line>
           <option name="timeStamp" value="24" />
         </line-breakpoint>
       </breakpoints>

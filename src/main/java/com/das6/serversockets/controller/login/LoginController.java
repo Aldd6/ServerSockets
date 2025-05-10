@@ -83,6 +83,7 @@ public class LoginController extends ControladorBase {
         credenciales.put("password", contrasenia);
 
         JSONObject responseUser = client.iniciarSesion(credenciales);
+        client.escucharServidor();
 
         if (responseUser != null && responseUser.getInt("status") == 200) {
 

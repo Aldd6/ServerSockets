@@ -91,6 +91,7 @@ public class Client {
             try {
                 while (isClientConnected()) {
                     JSONObject response = SocketJsonUtil.receive(in);
+
                     switch (response.getString("action_type")) {
                         case "update":
                         case "finished_ticket":
@@ -99,10 +100,16 @@ public class Client {
                             break;
                         case "polled_ticket":
                             setTicket(response.getJSONObject("data"));
-                            System.out.println(getTicket());
+                            System.out.println("Ticket recibido: " + getTicket());
                             break;
+                        case "new_ticket":
+                            JSONObject nuevoTicket = response.getJSONObject("data");
+                            setTicket(nuevoTicket);
+                            System.out.println("Nuevo ticket generado: " + nuevoTicket);
+                            break;
+
                         default:
-                            System.out.println(response);
+                            System.out.println("Respuesta por defecto dentro de metodo escucharServidor " + response);
                             break;
                     }
                 }
@@ -118,8 +125,11 @@ public class Client {
             ticket.put("action", "new_ticket");
             ticket.put("type", tipo);
             ticket.put("ref_client", JSONObject.NULL);
+
             SocketJsonUtil.send(out, ticket);
             System.out.println("Ticket generado para tipo " + tipo);
+            System.out.println("Ticket enviado: " + ticket);
+
         } catch (IOException ex) {
             System.out.println("Error al generar ticket: " + ex.getMessage());
         }
