@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4b53175e-67e1-4fc9-891d-05c7c1ff664f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/das6/serversockets/controller/kiosko/KioskoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/das6/serversockets/controller/kiosko/KioskoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/das6/serversockets/server/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/das6/serversockets/server/Client.java" afterDir="false" />
-    </list>
+    <list default="true" id="4b53175e-67e1-4fc9-891d-05c7c1ff664f" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -34,7 +30,7 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="mavenHome" value="Use Maven wrapper" />
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
       </MavenGeneralSettings>
     </option>
   </component>
@@ -58,7 +54,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "Local/FeatureIvan",
+    "git-widget-placeholder": "FeatureDaniel",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Salvador Hernández/IdeaProjects/ServerSockets/src/main/resources/com/das6/serversockets/Kiosko",
     "list.type.of.created.stylesheet": "CSS",
