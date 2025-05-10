@@ -10,6 +10,8 @@ module com.das6.serversockets {
     requires java.naming;
 
     opens com.das6.serversockets.controller.cliente to javafx.fxml;
+    opens com.das6.serversockets.controller.login to javafx.fxml;
+    opens com.das6.serversockets.controller.kiosko to javafx.fxml;
 
     exports com.das6.serversockets;
     exports com.das6.serversockets.controller.cliente;
