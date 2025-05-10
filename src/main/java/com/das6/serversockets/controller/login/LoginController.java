@@ -1,6 +1,8 @@
 package com.das6.serversockets.controller.login;
 
 import com.das6.serversockets.WindowsUtil;
+import com.das6.serversockets.controller.cliente.PrincipalClienteController;
+import com.das6.serversockets.controller.kiosko.KioskoController;
 import com.das6.serversockets.server.Client;
 import com.das6.serversockets.utilities.ControladorBase;
 import com.das6.serversockets.utilities.VistaUtil;
@@ -92,13 +94,15 @@ public class LoginController extends ControladorBase {
 
             switch (tipo) {
                 case "CHECKOUT":
-                    VistaUtil.cambiar(stage, "/com/das6/serversockets/Cliente/principal-cliente.fxml", 366, 251, "CHECKOUT");
+                    PrincipalClienteController controllerCliente = VistaUtil.cambiar(stage, "/com/das6/serversockets/Cliente/principal-cliente.fxml", 366, 251, "CHECKOUT");
+                    controllerCliente.setClient(client);
                     break;
                 case "SERVICE":
                     VistaUtil.cambiar(stage, "/com/das6/serversockets/Cliente/services-cliente.fxml", 366, 251, "SERVICES");
                     break;
                 case "KIOSK":
-                    VistaUtil.cambiar(stage, "/com/das6/serversockets/Kiosko/kiosko.fxml", 1080, 720, "KIOSK");
+                    KioskoController controller = VistaUtil.cambiar(stage, "/com/das6/serversockets/Kiosko/kiosko.fxml", 1080, 720, "KIOSK");
+                    controller.setClient(client);
                     break;
                 case "SCREEN":
                     VistaUtil.cambiar(stage, "/com/das6/serversockets/Cliente/principal-cliente.fxml", 366, 251, "CHECK");

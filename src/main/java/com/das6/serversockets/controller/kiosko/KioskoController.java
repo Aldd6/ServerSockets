@@ -58,18 +58,20 @@ public class KioskoController extends ControladorBase {
 
     @FXML
     private void generarTicketCaja(ActionEvent event) {
+        System.out.println("✔ Se hizo clic en el botón de CAJA");
+
         if (client != null) {
             client.generarTicket("CHECKOUT");
-            System.out.println("");
         }
     }
 
     @FXML
     private void generarTicketServicio(ActionEvent event) {
+        System.out.println("✔ Se hizo clic en el botón de SERVICIO AL CLIENTE");
+
         if (client != null) {
             client.generarTicket("SERVICE");
         }
     }
-
 
 }
