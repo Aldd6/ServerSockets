@@ -73,14 +73,14 @@ public class Client {
     }
 
     public JSONObject iniciarSesion(JSONObject creds){
-        // Scanner sc = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         try {
             SocketJsonUtil.send(out, creds);
             JSONObject user = SocketJsonUtil.receive(in);
             System.out.println(user);
 
             return user;
-            /*String command;
+            String command;
             if(user.getString("type").equals("KIOSK")) {
                 while(isClientConnected()) {
                     command = sc.nextLine();
@@ -137,7 +137,7 @@ public class Client {
                     request.put("new_type","SERVICE");
                     SocketJsonUtil.send(out, request);
                 }
-            }*/
+            }
         }catch (IOException e) {
             System.out.println(e.getMessage());
             return  null;
