@@ -75,11 +75,7 @@ public class KioskoController extends ControladorBase {
     private void mostrarVistaExitoTemporal() {
         new Thread(() -> {
 
-            JSONObject ticket = client.getTicket();
-
-            System.out.println(ticket);
-
-            String codigo = (ticket != null) ? ticket.getString("code") : "???";
+            String codigo = "1";
 
             Platform.runLater(() -> {
                 Stage stage = (Stage) btnCaja.getScene().getWindow();
@@ -96,7 +92,16 @@ public class KioskoController extends ControladorBase {
 
                 PauseTransition pausa = new PauseTransition(Duration.seconds(3));
                 pausa.setOnFinished(e -> {
-                    VistaUtil.cambiar(stage, "/com/das6/serversockets/Kiosko/kiosko.fxml", 1080, 720, "KIOSK");
+
+                    KioskoController kioskoController = VistaUtil.cambiar(
+                            stage,
+                            "/com/das6/serversockets/Kiosko/kiosko.fxml",
+                            1080,
+                            720,
+                            "KIOSK"
+                    );
+
+                    kioskoController.setClient(client);
                 });
                 pausa.play();
             });
