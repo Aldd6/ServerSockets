@@ -13,19 +13,17 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 
 public class VistaUtil {
-    public static void cambiar(Stage stageActual, String rutaFXML, double anchoVentana, double altoVentana, String tipo) {
+
+    public static <T> T cambiar(Stage stage, String rutaFXML, double anchoVentana, double altoVentana, String tipo) {
         try {
             FXMLLoader loader = new FXMLLoader(VistaUtil.class.getResource(rutaFXML));
             Parent root = loader.load();
 
-            Stage nuevoStage = new Stage();
+            T controller = loader.getController();
 
-            Object controller = loader.getController();
             if (controller instanceof ControladorBase) {
-                ((ControladorBase) controller).setStage(nuevoStage);
+                ((ControladorBase) controller).setStage(stage);
             }
-
-            nuevoStage.initStyle(StageStyle.TRANSPARENT);
 
             Scene nuevaEscena = new Scene(root);
             nuevaEscena.setFill(Color.TRANSPARENT);
@@ -41,24 +39,29 @@ public class VistaUtil {
                 posicionY = (pantalla.getHeight() - altoVentana) / 2;
             }
 
-            nuevoStage.setScene(nuevaEscena);
-            nuevoStage.setX(posicionX);
-            nuevoStage.setY(posicionY);
-            nuevoStage.show();
+            stage.close();
 
-            // Redondear
+            if (!stage.isShowing() && stage.getStyle() == StageStyle.DECORATED) {
+                stage.initStyle(StageStyle.TRANSPARENT);
+            }
+
+            stage.setScene(nuevaEscena);
+            stage.setX(posicionX);
+            stage.setY(posicionY);
+            stage.show();
+
             Rectangle clip = new Rectangle(anchoVentana, altoVentana);
             clip.setArcWidth(20);
             clip.setArcHeight(20);
             root.setClip(clip);
 
-            // Cerrar la ventana anterior
-            stageActual.close();
+            return loader.getController();
 
         } catch (IOException e) {
-            System.out.println("Error al cargar la vista: " + rutaFXML);
+            System.out.println("Error al cambiar vista a: " + rutaFXML);
             e.printStackTrace();
+            return null;
         }
     }
-
 }
+
