@@ -101,7 +101,7 @@ public class LoginController extends ControladorBase {
                     VistaUtil.cambiar(stage, "/com/das6/serversockets/Kiosko/kiosko.fxml", 1080, 720, "KIOSK");
                     break;
                 case "SCREEN":
-                    VistaUtil.cambiar(stage, "/com/das6/serversockets/Cliente/principal-cliente.fxml", 366, 251, "CHECK");
+                    VistaUtil.cambiar(stage, "/com/das6/serversockets/Cliente/principal-cliente.fxml", 1080, 720, "SCREEN");
                     break;
                 default:
                     System.out.println("VISTA POR DEFECTO");
