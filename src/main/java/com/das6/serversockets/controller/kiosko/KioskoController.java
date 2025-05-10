@@ -1,6 +1,8 @@
 package com.das6.serversockets.controller.kiosko;
 
 import com.das6.serversockets.WindowsUtil;
+import com.das6.serversockets.server.Client;
+import com.das6.serversockets.utilities.ControladorBase;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,7 +20,10 @@ import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.io.IOException;
 
-public class KioskoController {
+public class KioskoController extends ControladorBase {
+
+    private Client client;
+
     @FXML
     private FontIcon btnCerrar;
 
@@ -37,6 +42,10 @@ public class KioskoController {
         btnMinimizar.setOnMouseClicked(WindowsUtil::minimizarVenta);
     }
 
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
     @FXML
     private void onMousePressed(MouseEvent event) {
         WindowsUtil.onMousePressed(event);
@@ -49,12 +58,17 @@ public class KioskoController {
 
     @FXML
     private void generarTicketCaja(ActionEvent event) {
-
+        if (client != null) {
+            client.generarTicket("CHECKOUT");
+            System.out.println("");
+        }
     }
 
     @FXML
     private void generarTicketServicio(ActionEvent event) {
-
+        if (client != null) {
+            client.generarTicket("SERVICE");
+        }
     }
 
 

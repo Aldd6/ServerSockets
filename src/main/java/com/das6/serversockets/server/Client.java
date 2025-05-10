@@ -112,17 +112,16 @@ public class Client {
         }).start();
     }
 
-    public void generarTicket() {
+    public void generarTicket(String tipo) {
         try {
             JSONObject ticket = new JSONObject();
             ticket.put("action", "new_ticket");
-            ticket.put("type", "CHECKOUT");
+            ticket.put("type", tipo);
             ticket.put("ref_client", JSONObject.NULL);
             SocketJsonUtil.send(out, ticket);
-
+            System.out.println("Ticket generado para tipo " + tipo);
         } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-
+            System.out.println("Error al generar ticket: " + ex.getMessage());
         }
     }
 
