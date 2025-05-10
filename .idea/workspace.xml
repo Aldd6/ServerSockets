@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="4b53175e-67e1-4fc9-891d-05c7c1ff664f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/das6/serversockets/controller/login/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/das6/serversockets/controller/login/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/das6/serversockets/server/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/das6/serversockets/server/Client.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -178,7 +177,7 @@
       <workItem from="1746236858164" duration="5583000" />
       <workItem from="1746310712955" duration="10841000" />
       <workItem from="1746753014681" duration="172000" />
-      <workItem from="1746844488817" duration="1902000" />
+      <workItem from="1746844488817" duration="3416000" />
     </task>
     <servers />
   </component>
@@ -217,12 +216,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/das6/serversockets/server/Client.java</url>
-          <line>218</line>
+          <line>243</line>
           <option name="timeStamp" value="23" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/das6/serversockets/server/Client.java</url>
-          <line>195</line>
+          <line>220</line>
           <option name="timeStamp" value="24" />
         </line-breakpoint>
       </breakpoints>
