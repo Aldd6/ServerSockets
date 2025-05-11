@@ -5,6 +5,7 @@ import com.das6.serversockets.server.Client;
 import com.das6.serversockets.shared.SocketJsonUtil;
 import com.das6.serversockets.utilities.ControladorBase;
 import com.das6.serversockets.utilities.VistaUtil;
+import javafx.animation.FadeTransition;
 import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -72,10 +73,18 @@ public class KioskoController extends ControladorBase {
         }
     }
 
+    @FXML
+    private void generarTicketServicio(ActionEvent event) {
+        System.out.println("Se hizo clic en el botón de SERVICIO AL CLIENTE");
+
+        if (client != null) {
+            client.generarTicket("SERVICE");
+            mostrarVistaExitoTemporal();
+        }
+    }
+
     private void mostrarVistaExitoTemporal() {
         new Thread(() -> {
-
-//            String codigo = "1";
 
             Platform.runLater(() -> {
                 Stage stage = (Stage) btnCaja.getScene().getWindow();
@@ -88,33 +97,47 @@ public class KioskoController extends ControladorBase {
                         "EXITO"
                 );
 
-//                controller.setNumeroTicket(codigo);
+                // Crear la transición de desvanecimiento
+                FadeTransition fadeIn = new FadeTransition(Duration.seconds(0.2));
+                fadeIn.setNode(stage.getScene().getRoot());
+                fadeIn.setFromValue(0.0);
+                fadeIn.setToValue(1.0);
+                fadeIn.setCycleCount(1);
+                fadeIn.setAutoReverse(false);
 
+                fadeIn.play();
+
+                // Pausa antes de cambiar a la siguiente vista
                 PauseTransition pausa = new PauseTransition(Duration.seconds(3));
                 pausa.setOnFinished(e -> {
 
-                    KioskoController kioskoController = VistaUtil.cambiar(
-                            stage,
-                            "/com/das6/serversockets/Kiosko/kiosko.fxml",
-                            1080,
-                            720,
-                            "KIOSK"
-                    );
+                    FadeTransition fadeOut = new FadeTransition(Duration.seconds(0.2));
+                    fadeOut.setNode(stage.getScene().getRoot());
+                    fadeOut.setFromValue(1.0);
+                    fadeOut.setToValue(0.0);
+                    fadeOut.setOnFinished(event -> {
 
-                    kioskoController.setClient(client);
+                        KioskoController kioskoController = VistaUtil.cambiar(
+                                stage,
+                                "/com/das6/serversockets/Kiosko/kiosko.fxml",
+                                1080,
+                                720,
+                                "KIOSK"
+                        );
+                        kioskoController.setClient(client);
+                        
+                        FadeTransition fadeInNew = new FadeTransition(Duration.seconds(0.2));
+                        fadeInNew.setNode(stage.getScene().getRoot());
+                        fadeInNew.setFromValue(0.0);
+                        fadeInNew.setToValue(1.0);
+                        fadeInNew.play();
+                    });
+                    fadeOut.play();
                 });
                 pausa.play();
             });
         }).start();
     }
 
-    @FXML
-    private void generarTicketServicio(ActionEvent event) {
-        System.out.println("Se hizo clic en el botón de SERVICIO AL CLIENTE");
-
-        if (client != null) {
-            client.generarTicket("SERVICE");
-        }
-    }
 
 }
