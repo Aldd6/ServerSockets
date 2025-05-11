@@ -1,0 +1,52 @@
+.ticket-view {
+    -fx-background-color: #466276;
+    -fx-border-radius: 40;
+    -fx-background-radius: 40;
+}
+
+.ticket-label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 72;
+}
+
+.ticket-label-info {
+    -fx-text-fill: white;
+    -fx-font-size: 64;
+}
+
+.ticket-grid {
+    -fx-background-color: #FFFF;
+}
+
+.info-lace {
+    -fx-background-color: #e0e9ed;
+}
+
+.info-lace-text {
+    -fx-text-fill: black;
+    -fx-font-size: 24;
+}
+
+.last-call-lace {
+    -fx-background-color: #466276;
+}
+
+.last-call-item {
+    -fx-background-color: #466276;
+}
+
+.last-call-item-text {
+    -fx-text-fill: white;
+    -fx-font-size: 32;
+}
+
+.last-call-item-text-ticket {
+    -fx-text-fill: white;
+    -fx-font-size: 64;
+    -fx-font-weight: bold;
+}
+
+.HBox {
+    -fx-background-color: #466276;
+}
