@@ -103,10 +103,13 @@ public class Client {
                         case "transfer_ticket":
                             System.out.println(response);
 
-                            if (controller != null) {
-                                JSONArray tickets = response.getJSONArray("data");
-                                Platform.runLater(() -> controller.actualizarTabla(tickets));
-                            }
+                            JSONArray tickets = response.getJSONArray("data");
+                            Platform.runLater(() -> controller.actualizarTabla(tickets));
+
+//                            if (controller != null) {
+//                                JSONArray tickets = response.getJSONArray("data");
+//                                Platform.runLater(() -> controller.actualizarTabla(tickets));
+//                            }
 
                             break;
                         case "polled_ticket":
