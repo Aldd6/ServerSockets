@@ -28,15 +28,24 @@ public class TicketDispatcher {
                 });
     }
 
-    public static void dispatchNewTicket(UserType type, Ticket ticket) {
+    public static JSONObject dispatchNewTicket(UserType type, Ticket ticket) {
+
+        HashMap<String,Object> params = new HashMap<>();
+        params.put("action_type","new_ticket");
 
         QueueManager.getQueueByType(type).add(ticket);
+
+        JSONObject response;
 
         suscribersByType
                 .computeIfPresent(type, (t, set) -> {
                     set.forEach(ClientHandler::getUpdatedQueue);
                     return set.isEmpty() ? null : set;
                 });
+
+        response = ticket.toJson();
+
+        return StatusCode.OK.toJsonWithData(response,params);
     }
 
     public static JSONObject dispatchPolledTicket(UserType type) {

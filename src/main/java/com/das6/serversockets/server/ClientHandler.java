@@ -224,16 +224,27 @@ public class ClientHandler implements Runnable {
         switch (action) {
             case "new_ticket":
                 UserType typeTicket = UserType.convertTypeFromString(request.getString("type"));
+                try {
+                    if (request.get("ref_client") != JSONObject.NULL) {
+                        String ref = request.getString("ref_client");
+                        Ticket newTicket = TicketFactory.createTicket(typeTicket, ref);
+                        SocketJsonUtil.send(out,
+                                TicketDispatcher.dispatchNewTicket(typeTicket, newTicket));
 
-                if (request.get("ref_client") != JSONObject.NULL) {
+                    } else {
+                        Ticket newTicket = TicketFactory.createTicket(typeTicket);
+                        SocketJsonUtil.send(out,
+                                TicketDispatcher.dispatchNewTicket(typeTicket, newTicket));
 
-                    String ref = request.getString("ref_client");
-                    TicketDispatcher.dispatchNewTicket(typeTicket,
-                            TicketFactory.createTicket(typeTicket, ref));
-
-                } else {
-                    TicketDispatcher.dispatchNewTicket(typeTicket,
-                            TicketFactory.createTicket(typeTicket));
+                    }
+                } catch (IOException e) {
+                    try {
+                        params.put("action_type", "polled_ticket");
+                        SocketJsonUtil.send(out, StatusCode.INTERNAL_ERROR.toJsonWithParams(params));
+                    } catch (IOException ex) {
+                        System.out.println(ex.getMessage());
+                    }
+                    System.out.println(e.getMessage());
                 }
                 break;
             default:
