@@ -8,8 +8,8 @@ import javafx.scene.input.MouseEvent;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 public class ExitoKioskoController extends ControladorBase {
-//    @FXML
-//    private Label lbNumeroTicket;
+    @FXML
+    private Label lblNumeroTicket;
 
     @FXML
     private FontIcon btnCerrar;
@@ -34,7 +34,7 @@ public class ExitoKioskoController extends ControladorBase {
     }
 
 
-//    public void setNumeroTicket(String codigo){
-//        lbNumeroTicket.setText(codigo);
-//    }
+      public void setNumeroTicket(String codigo){
+          lblNumeroTicket.setText(codigo);
+      }
 }
