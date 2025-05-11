@@ -100,7 +100,9 @@ public class LoginController extends ControladorBase {
                     client.setController(controllerCliente);
                     break;
                 case "SERVICE":
-                    VistaUtil.cambiar(stage, "/com/das6/serversockets/Cliente/services-cliente.fxml", 366, 251, "SERVICES");
+                    PrincipalClienteController controllerServicio = VistaUtil.cambiar(stage, "/com/das6/serversockets/Cliente/services-cliente.fxml", 366, 251, "SERVICES");
+                    controllerServicio.setClient(client);
+                    client.setController(controllerServicio);
                     break;
                 case "KIOSK":
                     KioskoController controller = VistaUtil.cambiar(stage, "/com/das6/serversockets/Kiosko/kiosko.fxml", 1080, 720, "KIOSK");
