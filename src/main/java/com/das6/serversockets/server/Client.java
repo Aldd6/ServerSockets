@@ -110,13 +110,20 @@ public class Client {
 
                             break;
                         case "polled_ticket":
-                            setTicket(response.getJSONObject("data"));
+                            JSONObject polled = response.getJSONObject("data");
+                            setTicket(polled);
                             System.out.println("Ticket recibido: " + getTicket());
+
+                            if (controller != null){
+                                Platform.runLater(() -> controller.mostrarTicket(polled));
+                            }
+
                             break;
                         case "new_ticket":
                             JSONObject nuevoTicket = response.getJSONObject("data");
                             setTicket(nuevoTicket);
                             System.out.println("Nuevo ticket generado: " + nuevoTicket);
+
                             break;
 
                         default:

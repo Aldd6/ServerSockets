@@ -5,15 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4b53175e-67e1-4fc9-891d-05c7c1ff664f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/das6/serversockets/TicketInfo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/das6/serversockets/controller/cliente/PrincipalClienteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/das6/serversockets/controller/cliente/PrincipalClienteController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/das6/serversockets/controller/kiosko/ExitoKioskoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/das6/serversockets/controller/kiosko/ExitoKioskoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/das6/serversockets/controller/kiosko/KioskoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/das6/serversockets/controller/kiosko/KioskoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/das6/serversockets/controller/login/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/das6/serversockets/controller/login/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/das6/serversockets/server/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/das6/serversockets/server/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/das6/serversockets/Cliente/principal-cliente.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/das6/serversockets/Cliente/principal-cliente.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/das6/serversockets/Kiosko/exitoKiosko.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/das6/serversockets/Kiosko/exitoKiosko.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -185,6 +180,7 @@
       <workItem from="1746310712955" duration="10841000" />
       <workItem from="1746753014681" duration="172000" />
       <workItem from="1746844488817" duration="19189000" />
+      <workItem from="1746906120126" duration="4350000" />
     </task>
     <servers />
   </component>

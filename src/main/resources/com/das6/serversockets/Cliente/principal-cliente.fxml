@@ -45,7 +45,7 @@
                     <children>
                         <FontIcon fill="#466276" iconLiteral="bi-clock-history" iconSize="14" wrappingWidth="20.0" />
                         <Label prefHeight="6.0" prefWidth="117.0" stylesheets="@main.css" text="Tiempo Transcurrido:" />
-                        <Label fx:id="lbTiempoTranscurrido" prefHeight="0.0" prefWidth="45.0" stylesheets="@main.css" text="00:00:00" />
+                        <Label fx:id="lbTiempoTranscurrido" prefHeight="0.0" prefWidth="45.0" stylesheets="@main.css"/>
                     </children>
                     <VBox.margin>
                         <Insets />
@@ -63,8 +63,8 @@
                 </TableView>
                 <HBox alignment="CENTER_RIGHT" prefHeight="45.0" prefWidth="366.0" spacing="15.0">
                     <children>
-                        <Button fx:id="btnTransferir" mnemonicParsing="false" prefHeight="25.0" prefWidth="110.0" styleClass="boton-secundario" stylesheets="@main.css" text="Transferir" textFill="#1e262e" />
-                        <Button fx:id="btnSiguiente" mnemonicParsing="false" prefHeight="25.0" prefWidth="108.0" styleClass="boton-principal" stylesheets="@main.css" text="Siguiente" />
+                        <Button fx:id="btnTransferir" mnemonicParsing="false" onAction="#transferirTicket" prefHeight="25.0" prefWidth="110.0" styleClass="boton-secundario" stylesheets="@main.css" text="Transferir" textFill="#1e262e" />
+                        <Button fx:id="btnSiguiente" mnemonicParsing="false" onAction="#siguienteTicket" prefHeight="25.0" prefWidth="108.0" styleClass="boton-principal" stylesheets="@main.css" text="Siguiente" />
                     </children>
                 </HBox>
             </children>
