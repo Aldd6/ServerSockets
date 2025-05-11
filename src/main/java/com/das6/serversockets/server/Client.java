@@ -1,6 +1,9 @@
 package com.das6.serversockets.server;
 
+import com.das6.serversockets.controller.cliente.PrincipalClienteController;
 import com.das6.serversockets.shared.SocketJsonUtil;
+import javafx.application.Platform;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.*;
@@ -20,6 +23,8 @@ public class Client {
     private static Properties properties;
 
     private JSONObject ticket;
+
+    private PrincipalClienteController controller;
 
     private static void loadProperties() {
         properties = new Properties();
@@ -91,18 +96,41 @@ public class Client {
             try {
                 while (isClientConnected()) {
                     JSONObject response = SocketJsonUtil.receive(in);
+
                     switch (response.getString("action_type")) {
                         case "update":
                         case "finished_ticket":
                         case "transfer_ticket":
                             System.out.println(response);
+
+                            JSONArray tickets = response.getJSONArray("data");
+                            Platform.runLater(() -> controller.actualizarTabla(tickets));
+
+//                            if (controller != null) {
+//                                JSONArray tickets = response.getJSONArray("data");
+//                                Platform.runLater(() -> controller.actualizarTabla(tickets));
+//                            }
+
                             break;
                         case "polled_ticket":
-                            setTicket(response.getJSONObject("data"));
-                            System.out.println(getTicket());
+                            JSONObject polled = response.getJSONObject("data");
+                            setTicket(polled);
+                            System.out.println("Ticket recibido: " + getTicket());
+
+                            if (controller != null){
+                                Platform.runLater(() -> controller.mostrarTicket(polled));
+                            }
+
                             break;
+                        case "new_ticket":
+                            JSONObject nuevoTicket = response.getJSONObject("data");
+                            setTicket(nuevoTicket);
+                            System.out.println("Nuevo ticket generado: " + nuevoTicket);
+
+                            break;
+
                         default:
-                            System.out.println(response);
+                            System.out.println("Respuesta por defecto dentro de metodo escucharServidor " + response);
                             break;
                     }
                 }
@@ -118,8 +146,11 @@ public class Client {
             ticket.put("action", "new_ticket");
             ticket.put("type", tipo);
             ticket.put("ref_client", JSONObject.NULL);
+
             SocketJsonUtil.send(out, ticket);
             System.out.println("Ticket generado para tipo " + tipo);
+            System.out.println("Ticket enviado: " + ticket);
+
         } catch (IOException ex) {
             System.out.println("Error al generar ticket: " + ex.getMessage());
         }
@@ -173,90 +204,7 @@ public class Client {
         }
     }
 
-
-    /* public static void main(String[] args) {
-
-        Scanner sc = new Scanner(System.in);
-
-        Client client = new Client();
-
-        System.out.print("ingrese su usuario: ");
-
-        String usuario = sc.nextLine();
-
-        System.out.print("ingrese su contrasenia: ");
-
-        String contrasenia = sc.nextLine();
-
-        JSONObject creds = new JSONObject();
-
-        creds.put("username", usuario);
-        creds.put("password", contrasenia);
-        try {
-            SocketJsonUtil.send(client.out, creds);
-            JSONObject user = SocketJsonUtil.receive(client.in);
-            System.out.println(user);
-            String command;
-            if(user.getJSONObject("data").getString("type").equals("KIOSK")) {
-                while(client.isClientConnected()) {
-                    command = sc.nextLine();
-                    if(command.equals("generate")) {
-                        JSONObject ticket = new JSONObject();
-                        ticket.put("action","new_ticket");
-                        ticket.put("type","CHECKOUT");
-                        ticket.put("ref_client",JSONObject.NULL);
-                        SocketJsonUtil.send(client.out, ticket);
-                    }
-                }
-            }
-            if(user.getJSONObject("data").getString("type").equals("SCREEN")) {
-                while(client.isClientConnected()) {
-                    System.out.println(SocketJsonUtil.receive(client.in));
-                }
-            }
-            new Thread(() -> {
-                try {
-                    while(client.isClientConnected()) {
-                        JSONObject response = SocketJsonUtil.receive(client.in);
-                        switch(response.getString("action_type")) {
-                            case "update", "finished_ticket", "transfer_ticket":
-                                System.out.println(response);
-                                break;
-                            case "polled_ticket":
-                                client.setTicket(response.getJSONObject("data"));
-                                System.out.println(client.getTicket());
-                                break;
-                            default:
-                                System.out.println(response);
-                                break;
-                        }
-                    }
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            }).start();
-            while(client.isClientConnected()) {
-                command = sc.nextLine();
-                if(command.equals("poll")) {
-                    JSONObject request = new JSONObject();
-                    request.put("action","get_ticket");
-                    SocketJsonUtil.send(client.out, request);
-                }else if(command.equals("finish")) {
-                    JSONObject request = new JSONObject();
-                    request.put("action","finish_ticket");
-                    request.put("no_ticket", client.getTicket().getString("code"));
-                    SocketJsonUtil.send(client.out, request);
-                }else if(command.equals("transfer")) {
-                    JSONObject request = new JSONObject();
-                    request.put("action","transfer_ticket");
-                    request.put("no_ticket", client.getTicket().getString("code"));
-                    request.put("new_type","SERVICE");
-                    SocketJsonUtil.send(client.out, request);
-                }
-            }
-        }catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-    }*/
-
+    public void setController(PrincipalClienteController controller) {
+        this.controller = controller;
+    }
 }

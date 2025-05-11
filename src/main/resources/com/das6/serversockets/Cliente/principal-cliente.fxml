@@ -29,7 +29,7 @@
                 <HBox alignment="CENTER_LEFT" prefHeight="5.0" prefWidth="336.0">
                     <children>
                         <FontIcon fill="#466276" iconLiteral="bi-receipt" iconSize="14" wrappingWidth="20.0" />
-                        <Label fx:id="lbNumTicket" prefHeight="25.0" prefWidth="218.0" stylesheets="@main.css" text="AA01">
+                        <Label fx:id="lbNumTicket" prefHeight="25.0" prefWidth="218.0" stylesheets="@main.css" text="Ticket">
                             <font>
                                 <Font name="System Bold" size="16.0" />
                             </font>
@@ -45,7 +45,7 @@
                     <children>
                         <FontIcon fill="#466276" iconLiteral="bi-clock-history" iconSize="14" wrappingWidth="20.0" />
                         <Label prefHeight="6.0" prefWidth="117.0" stylesheets="@main.css" text="Tiempo Transcurrido:" />
-                        <Label fx:id="lbTiempoTranscurrido" prefHeight="0.0" prefWidth="45.0" stylesheets="@main.css" text="00:00:00" />
+                        <Label fx:id="lbTiempoTranscurrido" prefHeight="0.0" prefWidth="45.0" stylesheets="@main.css" />
                     </children>
                     <VBox.margin>
                         <Insets />
@@ -54,18 +54,17 @@
                         <Insets bottom="10.0" />
                     </padding>
                 </HBox>
-                <TableView prefHeight="119.0" prefWidth="336.0" styleClass="tabla" stylesheets="@main.css">
+                <TableView fx:id="tableView" prefHeight="119.0" prefWidth="336.0" styleClass="tabla" stylesheets="@main.css">
                     <columns>
-                        <TableColumn fx:id="columnCheckBox" minWidth="7.0" prefWidth="25.0" styleClass="columna-izquierda" />
-                        <TableColumn fx:id="columnTicket" prefWidth="119.20000839233398" text="Ticket #" />
-                        <TableColumn fx:id="columnTiempo" minWidth="0.0" prefWidth="118.39994812011719" text="Tiempo" />
-                        <TableColumn fx:id="columnEstatus" prefWidth="68.5" styleClass="columna-derecha" text="Estatus" />
+                        <TableColumn fx:id="columnCode" prefWidth="119.20000839233398" resizable="false" styleClass="columna-izquierda" text="Ticket #" />
+                        <TableColumn fx:id="columnDateCreated" minWidth="0.0" prefWidth="118.39994812011719" resizable="false" text="Hora Creación" />
+                        <TableColumn fx:id="columntype" prefWidth="96.0" resizable="false" styleClass="columna-derecha" text="Tipo" />
                     </columns>
                 </TableView>
                 <HBox alignment="CENTER_RIGHT" prefHeight="45.0" prefWidth="366.0" spacing="15.0">
                     <children>
-                        <Button fx:id="btnTransferir" mnemonicParsing="false" prefHeight="25.0" prefWidth="110.0" styleClass="boton-secundario" stylesheets="@main.css" text="Transferir" textFill="#1e262e" />
-                        <Button fx:id="btnSiguiente" mnemonicParsing="false" prefHeight="25.0" prefWidth="108.0" styleClass="boton-principal" stylesheets="@main.css" text="Siguiente" />
+                        <Button fx:id="btnTransferir" mnemonicParsing="false" onAction="#transferirTicket" prefHeight="25.0" prefWidth="110.0" styleClass="boton-secundario" stylesheets="@main.css" text="Transferir" textFill="#1e262e" />
+                        <Button fx:id="btnSiguiente" mnemonicParsing="false" onAction="#siguienteTicket" prefHeight="25.0" prefWidth="108.0" styleClass="boton-principal" stylesheets="@main.css" text="Siguiente" />
                     </children>
                 </HBox>
             </children>

@@ -23,7 +23,7 @@ public class ClientHandler implements Runnable {
     private BufferedWriter out;
     private UserType userType;
     private JSONObject user;
-    HashMap<String,Object> params;
+    HashMap<String, Object> params;
 
     ClientHandler(Socket socket, BufferedReader in, BufferedWriter out) {
         this.socket = socket;
@@ -37,30 +37,30 @@ public class ClientHandler implements Runnable {
         boolean isActiveUser = false;
         try {
             JSONObject credsRequest = SocketJsonUtil.receive(in);
-            if(logInRequest(credsRequest) != 401) {
+            if (logInRequest(credsRequest) != 401) {
                 isActiveUser = true;
-                TicketDispatcher.registerClient(this.userType,this);
+                TicketDispatcher.registerClient(this.userType, this);
 
-                if(hasAsignedQueue()) {
+                if (hasAsignedQueue()) {
                     this.getUpdatedQueue();
                 }
 
-                while(true) {
+                while (true) {
                     JSONObject request = SocketJsonUtil.receive(in);
                     handleRequest(request);
                 }
             }
-        }catch(IOException e) {
+        } catch (IOException e) {
             String message = e.getMessage();
-            if(message.contains("Connection reset")) {
-                if(isActiveUser) {
-                    System.out.println(LocalDateTime.now() + ": Connection terminated from " + socket.getInetAddress() + ", "  + e.getMessage());
+            if (message.contains("Connection reset")) {
+                if (isActiveUser) {
+                    System.out.println(LocalDateTime.now() + ": Connection terminated from " + socket.getInetAddress() + ", " + e.getMessage());
                     closeClientConnection();
-                }else {
-                    System.out.println(LocalDateTime.now() + ": Connection suddenly terminated from " + socket.getInetAddress() + ", "  + e.getMessage());
+                } else {
+                    System.out.println(LocalDateTime.now() + ": Connection suddenly terminated from " + socket.getInetAddress() + ", " + e.getMessage());
                     closeInternalConnection();
                 }
-            }else {
+            } else {
                 System.out.println(LocalDateTime.now() + ": An error in communication has occurred, session terminated\n" + e);
             }
         }
@@ -72,24 +72,24 @@ public class ClientHandler implements Runnable {
 
     private int logInRequest(JSONObject request) {
 
-        params.put("action_type","login");
+        params.put("action_type", "login");
 
         JSONObject user = Repository.lookUpUserByCredentials(request);
 
-        if(user.getInt("status") == 401) {
+        if (user.getInt("status") == 401) {
             try {
                 SocketJsonUtil.send(out, StatusCode.UNAUTHORIZED.toJsonWithParams(params));
                 closeInternalConnection();
                 return StatusCode.UNAUTHORIZED.getCode();
-            }catch(IOException e) {
+            } catch (IOException e) {
                 System.out.println(e.getMessage());
             }
-        }else {
+        } else {
             try {
                 this.user = user.getJSONObject("data");
                 this.userType = UserType.convertTypeFromString(user.getJSONObject("data").getString("type"));
-                SocketJsonUtil.send(out, StatusCode.OK.toJsonWithData(user.getJSONObject("data"),params));
-            }catch (IOException e) {
+                SocketJsonUtil.send(out, StatusCode.OK.toJsonWithData(user.getJSONObject("data"), params));
+            } catch (IOException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -97,22 +97,22 @@ public class ClientHandler implements Runnable {
     }
 
     private void closeClientConnection() {
-        TicketDispatcher.removeClient(userType,this);
+        TicketDispatcher.removeClient(userType, this);
         closeInternalConnection();
     }
 
     private void closeInternalConnection() {
         try {
-            if(socket != null) {
+            if (socket != null) {
                 socket.close();
             }
-            if(in != null) {
+            if (in != null) {
                 in.close();
             }
-            if(out != null) {
+            if (out != null) {
                 out.close();
             }
-        }catch (IOException e) {
+        } catch (IOException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -129,15 +129,15 @@ public class ClientHandler implements Runnable {
         params.put("action_type", "update");
 
         try {
-            if(!queueJson.isEmpty()) {
+            if (!queueJson.isEmpty()) {
                 SocketJsonUtil.send(out, StatusCode.OK.toJsonWithData(queueJson, params));
-            }else {
+            } else {
                 SocketJsonUtil.send(out, StatusCode.NOT_FOUND.toJsonWithData(queueJson, params));
             }
-        }catch(IOException e) {
+        } catch (IOException e) {
             try {
                 SocketJsonUtil.send(out, StatusCode.INTERNAL_ERROR.toJSON());
-            }catch(IOException ex) {
+            } catch (IOException ex) {
                 System.out.println(ex.getMessage());
             }
             System.out.println(e.getMessage());
@@ -157,7 +157,7 @@ public class ClientHandler implements Runnable {
     }
 
     public void handleRequest(JSONObject request) {
-        switch(this.userType) {
+        switch (this.userType) {
             case UserType.CHECKOUT, UserType.SERVICE -> checkOutAndServiceHandler(request);
             case UserType.KIOSK -> kioskHandler(request);
         }
@@ -166,16 +166,16 @@ public class ClientHandler implements Runnable {
     private void checkOutAndServiceHandler(JSONObject request) {
         params.clear();
         String action = request.getString("action");
-        switch(action) {
+        switch (action) {
             case "get_ticket":
                 try {
                     SocketJsonUtil.send(out,
                             TicketDispatcher.dispatchPolledTicket(this.userType));
-                }catch(IOException e) {
+                } catch (IOException e) {
                     try {
                         params.put("action_type", "polled_ticket");
                         SocketJsonUtil.send(out, StatusCode.INTERNAL_ERROR.toJsonWithParams(params));
-                    }catch (IOException ex) {
+                    } catch (IOException ex) {
                         System.out.println(ex.getMessage());
                     }
                     System.out.println(e.getMessage());
@@ -189,7 +189,7 @@ public class ClientHandler implements Runnable {
                     try {
                         params.put("action_type", "finished_ticket");
                         SocketJsonUtil.send(out, StatusCode.INTERNAL_ERROR.toJsonWithParams(params));
-                    }catch (IOException ex) {
+                    } catch (IOException ex) {
                         System.out.println(ex.getMessage());
                     }
                 }
@@ -199,20 +199,20 @@ public class ClientHandler implements Runnable {
                     SocketJsonUtil.send(out, TicketDispatcher.dispatchTransferedTicket(this,
                             request.getString("no_ticket"),
                             UserType.convertTypeFromString(request.getString("new_type"))));
-                }catch(IOException e) {
+                } catch (IOException e) {
                     try {
                         params.put("action_type", "transfer_ticket");
                         SocketJsonUtil.send(out, StatusCode.INTERNAL_ERROR.toJsonWithParams(params));
-                    }catch (IOException ex) {
+                    } catch (IOException ex) {
                         System.out.println(ex.getMessage());
                     }
                 }
                 break;
             default:
                 try {
-                    params.put("action_type","default");
+                    params.put("action_type", "default");
                     SocketJsonUtil.send(out, StatusCode.INTERNAL_ERROR.toJsonWithParams(params));
-                }catch (IOException e) {
+                } catch (IOException e) {
                     System.out.println(e.getMessage());
                 }
         }
@@ -221,14 +221,17 @@ public class ClientHandler implements Runnable {
     private void kioskHandler(JSONObject request) {
         params.clear();
         String action = request.getString("action");
-        switch(action) {
+        switch (action) {
             case "new_ticket":
                 UserType typeTicket = UserType.convertTypeFromString(request.getString("type"));
-                if(request.get("ref_client") != JSONObject.NULL) {
+
+                if (request.get("ref_client") != JSONObject.NULL) {
+
                     String ref = request.getString("ref_client");
                     TicketDispatcher.dispatchNewTicket(typeTicket,
-                            TicketFactory.createTicket(typeTicket,ref));
-                }else {
+                            TicketFactory.createTicket(typeTicket, ref));
+
+                } else {
                     TicketDispatcher.dispatchNewTicket(typeTicket,
                             TicketFactory.createTicket(typeTicket));
                 }
@@ -237,16 +240,19 @@ public class ClientHandler implements Runnable {
                 try {
                     params.put("action_type", "default");
                     SocketJsonUtil.send(out, StatusCode.INTERNAL_ERROR.toJsonWithParams(params));
-                }catch (IOException e) {
+                } catch (IOException e) {
                     System.out.println(e.getMessage());
                 }
         }
     }
 
+
+
+
     private void adminHandler(JSONObject request) {
         params.clear();
         String action = request.getString("action");
-        switch(action) {
+        switch (action) {
             case "create_user":
 
                 break;
