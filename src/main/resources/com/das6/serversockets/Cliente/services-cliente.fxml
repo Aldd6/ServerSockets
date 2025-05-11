@@ -29,7 +29,7 @@
                 <HBox alignment="CENTER_LEFT" prefHeight="5.0" prefWidth="336.0">
                     <children>
                         <FontIcon fill="#466276" iconLiteral="bi-receipt" iconSize="14" wrappingWidth="20.0" />
-                        <Label fx:id="lbNumTicket" prefHeight="26.0" prefWidth="228.0" stylesheets="@main.css" text="AA01">
+                        <Label fx:id="lbNumTicket" prefHeight="26.0" prefWidth="228.0" stylesheets="@main.css" text="Ticket">
                             <font>
                                 <Font name="System Bold" size="16.0" />
                             </font>
@@ -56,10 +56,9 @@
                 </HBox>
                 <TableView prefHeight="119.0" prefWidth="336.0" styleClass="tabla" stylesheets="@main.css">
                     <columns>
-                        <TableColumn fx:id="columnCheckBox" minWidth="7.0" prefWidth="25.0" styleClass="columna-izquierda" />
-                        <TableColumn fx:id="columnTicket" prefWidth="119.20000839233398" text="Ticket #" />
-                        <TableColumn fx:id="columnTiempo" minWidth="0.0" prefWidth="118.39994812011719" text="Tiempo" />
-                        <TableColumn fx:id="columnEstatus" prefWidth="68.5" styleClass="columna-derecha" text="Estatus" />
+                        <TableColumn fx:id="columnTicket" prefWidth="119.20000839233398" resizable="false" styleClass="columna-izquierda" text="Ticket #" />
+                        <TableColumn fx:id="columnTiempo" minWidth="0.0" prefWidth="118.39994812011719" resizable="false" text="Hora de Creación" />
+                        <TableColumn fx:id="columnEstatus" prefWidth="95.0" resizable="false" styleClass="columna-derecha" text="Tipo" />
                     </columns>
                 </TableView>
                 <HBox alignment="CENTER_RIGHT" prefHeight="45.0" prefWidth="366.0" spacing="15.0">

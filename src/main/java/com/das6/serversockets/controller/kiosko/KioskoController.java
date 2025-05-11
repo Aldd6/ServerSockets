@@ -85,7 +85,6 @@ public class KioskoController extends ControladorBase {
 
     private void mostrarVistaExitoTemporal() {
         new Thread(() -> {
-
             Platform.runLater(() -> {
                 Stage stage = (Stage) btnCaja.getScene().getWindow();
 
@@ -125,7 +124,7 @@ public class KioskoController extends ControladorBase {
                                 "KIOSK"
                         );
                         kioskoController.setClient(client);
-                        
+
                         FadeTransition fadeInNew = new FadeTransition(Duration.seconds(0.2));
                         fadeInNew.setNode(stage.getScene().getRoot());
                         fadeInNew.setFromValue(0.0);
@@ -138,6 +137,4 @@ public class KioskoController extends ControladorBase {
             });
         }).start();
     }
-
-
 }
