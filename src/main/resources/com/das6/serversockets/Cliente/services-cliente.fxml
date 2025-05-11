@@ -54,11 +54,11 @@
                         <Insets bottom="10.0" />
                     </padding>
                 </HBox>
-                <TableView prefHeight="119.0" prefWidth="336.0" styleClass="tabla" stylesheets="@main.css">
+                <TableView fx:id="tableView" prefHeight="119.0" prefWidth="336.0" styleClass="tabla" stylesheets="@main.css">
                     <columns>
-                        <TableColumn fx:id="columnTicket" prefWidth="119.20000839233398" resizable="false" styleClass="columna-izquierda" text="Ticket #" />
-                        <TableColumn fx:id="columnTiempo" minWidth="0.0" prefWidth="118.39994812011719" resizable="false" text="Hora de Creación" />
-                        <TableColumn fx:id="columnEstatus" prefWidth="95.0" resizable="false" styleClass="columna-derecha" text="Tipo" />
+                        <TableColumn fx:id="columnCode" prefWidth="119.20000839233398" resizable="false" styleClass="columna-izquierda" text="Ticket #" />
+                        <TableColumn fx:id="columnDateCreated" minWidth="0.0" prefWidth="118.39994812011719" resizable="false" text="Hora Creación" />
+                        <TableColumn fx:id="columntype" prefWidth="96.0" resizable="false" styleClass="columna-derecha" text="Tipo" />
                     </columns>
                 </TableView>
                 <HBox alignment="CENTER_RIGHT" prefHeight="45.0" prefWidth="366.0" spacing="15.0">
