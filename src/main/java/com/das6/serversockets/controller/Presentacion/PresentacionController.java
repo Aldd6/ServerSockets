@@ -15,12 +15,20 @@ import javafx.util.Duration;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.kordamp.ikonli.javafx.FontIcon;
+import javax.sound.sampled.*;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 public class PresentacionController {
     private Client client;
+
+    private AudioInputStream audioStream;
+    private Clip clip;
+    private boolean audioHasBeenPlayed = false;
+
     @FXML
     private FontIcon btnCerrar;
     @FXML
@@ -41,6 +49,17 @@ public class PresentacionController {
         btnCerrar.setOnMouseClicked(WindowsUtil::cerrarVentana);
         btnMinimizar.setOnMouseClicked(WindowsUtil::minimizarVenta);
         items = new ArrayList<>(4);
+
+        try {
+            File file = new File("src/main/resources/nextTicketSound.wav");
+            audioStream = AudioSystem.getAudioInputStream(file);
+            clip = AudioSystem.getClip();
+
+            clip.open(audioStream);
+            clip.setMicrosecondPosition(TimeUnit.SECONDS.toMillis(1));
+        } catch (IOException | UnsupportedAudioFileException | LineUnavailableException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public void setClient(Client client) { this.client = client;}
@@ -124,8 +143,18 @@ public class PresentacionController {
             fadeInNew.setNode(txtTicketCalled);
             fadeInNew.setFromValue(0.0);
             fadeInNew.setToValue(1.0);
+            fadeInNew.setOnFinished(e -> {
+                if(audioHasBeenPlayed) {
+                    clip.setMicrosecondPosition(TimeUnit.SECONDS.toMillis(1));
+                }else {
+                    audioHasBeenPlayed = true;
+                }
+                clip.start();
+            });
             fadeInNew.play();
         });
+
+        clip.stop();
         fadeOut.play();
     }
 }
