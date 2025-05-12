@@ -1,5 +1,6 @@
 package com.das6.serversockets.server;
 
+import com.das6.serversockets.controller.Presentacion.PresentacionController;
 import com.das6.serversockets.controller.cliente.PrincipalClienteController;
 import com.das6.serversockets.shared.SocketJsonUtil;
 import javafx.application.Platform;
@@ -25,6 +26,9 @@ public class Client {
     private JSONObject ticket;
 
     private PrincipalClienteController controller;
+    private PresentacionController presController;
+
+    private int lastQueueSize = 0;
 
     private static void loadProperties() {
         properties = new Properties();
@@ -98,19 +102,54 @@ public class Client {
                     JSONObject response = SocketJsonUtil.receive(in);
 
                     switch (response.getString("action_type")) {
-                        case "update":
-                        case "finished_ticket":
-                        case "transfer_ticket":
+                        case "update_screen":
                             System.out.println(response);
 
-                            JSONArray tickets = response.getJSONArray("data");
-                            Platform.runLater(() -> controller.actualizarTabla(tickets));
+                            JSONArray lastTickets = response.getJSONArray("data");
+
+                            if(!lastTickets.isEmpty()) {
+
+                                if(lastTickets.length() > lastQueueSize) {
+                                    System.out.println("tamaño de la cola actual: " + lastTickets.length() + "\n tamaño de la cola anterior: " + lastQueueSize);
+                                    lastQueueSize = lastTickets.length();
+                                    Platform.runLater(() -> {
+                                        presController.actualizarTicket(lastTickets.getJSONObject(lastTickets.length() - 1));
+                                        presController.actualizarCola(lastTickets);
+                                    });
+                                }else if(lastTickets.length() < lastQueueSize) {
+                                    System.out.println("tamaño de la cola actual: " + lastTickets.length() + "\n tamaño de la cola anterior: " + lastQueueSize);
+                                    lastQueueSize = lastTickets.length();
+                                    Platform.runLater(() -> presController.actualizarCola(lastTickets));
+                                }else {
+                                    System.out.println("tamaño de la cola actual: " + lastTickets.length() + "\n tamaño de la cola anterior: " + lastQueueSize);
+                                    System.out.println("colas del mismo tamaño");
+                                }
+
+                            }else {
+                                lastQueueSize = 0;
+                            }
+
+                            break;
+                        case "finished_ticket":
+                            System.out.println("Ticket terminado: " + response.getString("code"));
+                            break;
+                        case "update_checkout":
+                            System.out.println(response);
+
+                            JSONArray ticketsCheckout = response.getJSONArray("data");
+                            Platform.runLater(() -> controller.actualizarTabla(ticketsCheckout));
 
 //                            if (controller != null) {
-//                                JSONArray tickets = response.getJSONArray("data");
-//                                Platform.runLater(() -> controller.actualizarTabla(tickets));
+//                                JSONArray ticketsCheckout = response.getJSONArray("data");
+//                                Platform.runLater(() -> controller.actualizarTabla(ticketsCheckout));
 //                            }
 
+                            break;
+                        case "update_service":
+                            System.out.println(response);
+
+                            JSONArray ticketsService = response.getJSONArray("data");
+                            Platform.runLater(() -> controller.actualizarTabla(ticketsService));
                             break;
                         case "polled_ticket":
                             JSONObject polled = response.getJSONObject("data");
@@ -206,5 +245,9 @@ public class Client {
 
     public void setController(PrincipalClienteController controller) {
         this.controller = controller;
+    }
+
+    public void setPresController(PresentacionController presController) {
+        this.presController = presController;
     }
 }

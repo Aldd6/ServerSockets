@@ -34,7 +34,7 @@
                 </HBox>
             <HBox prefHeight="47.0" prefWidth="1055.0">
                <children>
-                  <Label fx:id="lblNumeroTicket" alignment="CENTER" contentDisplay="CENTER" prefHeight="47.0" prefWidth="1055.0" stylesheets="@main.css" text="AA01">
+                  <Label fx:id="lbNumeroTicket" alignment="CENTER" contentDisplay="CENTER" prefHeight="47.0" prefWidth="1055.0" stylesheets="@main.css" text="AA01">
                      <font>
                         <Font name="System Bold" size="32.0" />
                      </font>

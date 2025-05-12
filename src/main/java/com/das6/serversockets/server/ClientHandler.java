@@ -126,7 +126,12 @@ public class ClientHandler implements Runnable {
             queueJson.put(t.toJson());
         });
 
-        params.put("action_type", "update");
+        switch(this.userType) {
+            case CHECKOUT -> params.put("action_type", "update_checkout");
+            case SERVICE -> params.put("action_type", "update_service");
+            case SCREEN -> params.put("action_type", "update_screen");
+        }
+
 
         try {
             if (!queueJson.isEmpty()) {

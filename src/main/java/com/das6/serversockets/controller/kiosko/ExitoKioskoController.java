@@ -9,7 +9,7 @@ import org.kordamp.ikonli.javafx.FontIcon;
 
 public class ExitoKioskoController extends ControladorBase {
     @FXML
-    private Label lblNumeroTicket;
+    private Label lbNumeroTicket;
 
     @FXML
     private FontIcon btnCerrar;
@@ -35,6 +35,6 @@ public class ExitoKioskoController extends ControladorBase {
 
 
       public void setNumeroTicket(String codigo){
-          lblNumeroTicket.setText(codigo);
+          lbNumeroTicket.setText(codigo);
       }
 }
