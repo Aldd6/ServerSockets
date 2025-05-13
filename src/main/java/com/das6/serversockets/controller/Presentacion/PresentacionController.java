@@ -80,7 +80,7 @@ public class PresentacionController {
 
             JSONObject ticket;
             String ticketCode;
-            String caja;
+            int deskNumber;
 
             int counterFlag = 0;
 
@@ -96,9 +96,19 @@ public class PresentacionController {
 
                         ticket = tickets.getJSONObject(i);
                         ticketCode = ticket.getString("code");
-//                      caja = ticket.getString("caja");
+                        deskNumber = ticket.getInt("deskNumber");
 
                         itemController.setLblTicketItem(ticketCode);
+                        switch(ticketCode.charAt(0)) {
+                            case 'C':
+                                itemController.setLblCajaItem("Caja " + deskNumber);
+                                lblCaja.setText("Caja " + deskNumber);
+                                break;
+                            case 'S':
+                                itemController.setLblCajaItem("Escritorio " + deskNumber);
+                                lblCaja.setText("Escritorio " + deskNumber);
+                                break;
+                        }
 
                         items.add(item);
                         counterFlag++;
