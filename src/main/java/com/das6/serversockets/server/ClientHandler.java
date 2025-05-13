@@ -175,7 +175,7 @@ public class ClientHandler implements Runnable {
             case "get_ticket":
                 try {
                     SocketJsonUtil.send(out,
-                            TicketDispatcher.dispatchPolledTicket(this.userType));
+                            TicketDispatcher.dispatchPolledTicket(this.userType,request.getInt("deskNumber")));
                 } catch (IOException e) {
                     try {
                         params.put("action_type", "polled_ticket");
