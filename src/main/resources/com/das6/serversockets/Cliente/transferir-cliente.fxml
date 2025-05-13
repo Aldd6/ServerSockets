@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane onMouseDragged="#onMouseDragged" onMousePressed="#onMousePressed" prefHeight="251.0" prefWidth="366.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.das6.serversockets.controller.cliente.PrincipalClienteController">
+<AnchorPane onMouseDragged="#onMouseDragged" onMousePressed="#onMousePressed" prefHeight="251.0" prefWidth="366.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.das6.serversockets.controller.cliente.TransferirController">
     <children>
         <HBox alignment="CENTER_LEFT" prefHeight="34.0" prefWidth="366.0" style="-fx-background-color: #466276;">
             <children>
@@ -44,22 +44,19 @@
                <children>
                   <VBox alignment="CENTER" prefHeight="144.0" prefWidth="336.0">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="336.0" stylesheets="@main.css" text="El siguiente ticket será transferido" textAlignment="CENTER" />
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="336.0" stylesheets="@main.css" text="a servicio al cliente." textAlignment="CENTER" />
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="336.0" stylesheets="@main.css" text="AA02" textAlignment="CENTER">
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="336.0" stylesheets="@main.css" text="El nuevo numero de ticket para atención es" textAlignment="CENTER" />
+                        <Label fx:id="lblCodigoNuevo" alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="336.0" stylesheets="@main.css" text="AA02" textAlignment="CENTER">
                            <font>
                               <Font name="System Bold" size="32.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="336.0" stylesheets="@main.css" text="¿Desea continuar?" textAlignment="CENTER" />
                      </children>
                   </VBox>
                </children>
                 </HBox>
                 <HBox alignment="CENTER_RIGHT" prefHeight="45.0" prefWidth="366.0" spacing="15.0">
                     <children>
-                        <Button fx:id="btnTransferir" mnemonicParsing="false" prefHeight="25.0" prefWidth="110.0" styleClass="boton-secundario" stylesheets="@main.css" text="Cancelar" textFill="#1e262e" />
-                        <Button fx:id="btnSiguiente" mnemonicParsing="false" prefHeight="25.0" prefWidth="108.0" styleClass="boton-principal" stylesheets="@main.css" text="Aceptar" />
+                        <Button fx:id="btnAceptar" mnemonicParsing="false" prefHeight="25.0" prefWidth="108.0" styleClass="boton-principal" stylesheets="@main.css" text="Aceptar" />
                     </children>
                 </HBox>
             </children>

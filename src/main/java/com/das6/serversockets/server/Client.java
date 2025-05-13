@@ -3,6 +3,7 @@ package com.das6.serversockets.server;
 import com.das6.serversockets.controller.Presentacion.PresentacionController;
 import com.das6.serversockets.controller.cliente.PrincipalClienteController;
 import com.das6.serversockets.shared.SocketJsonUtil;
+import com.das6.serversockets.shared.UserType;
 import javafx.application.Platform;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -25,6 +26,8 @@ public class Client {
 
     private JSONObject ticket;
     private int deskNumber;
+
+    private UserType userType;
 
     private PrincipalClienteController controller;
     private PresentacionController presController;
@@ -89,6 +92,10 @@ public class Client {
             System.out.println(user);
 
             this.deskNumber = deskNumber;
+            this.userType = UserType.convertTypeFromString(user
+                    .getJSONObject("data")
+                    .getString("type")
+            );
 
             return user;
 
@@ -170,7 +177,11 @@ public class Client {
                             System.out.println("Nuevo ticket generado: " + nuevoTicket);
 
                             break;
+                        case "transfer_ticket":
+                            System.out.println(response);
+                            Platform.runLater(() -> controller.mostrarTicketTransferido(response.getString("code")));
 
+                            break;
                         default:
                             System.out.println("Respuesta por defecto dentro de metodo escucharServidor " + response);
                             break;
@@ -217,7 +228,7 @@ public class Client {
         try {
             JSONObject request = new JSONObject();
             request.put("action", "get_ticket");
-            request.put("deskNumber",1); //cambiar por el numero de escritorio cuando se integre
+            request.put("deskNumber",this.deskNumber); //cambiar por el numero de escritorio cuando se integre
             SocketJsonUtil.send(out, request);
         } catch (IOException e) {
             System.out.println("Error al solicitar ticket: " + e.getMessage());
@@ -235,12 +246,15 @@ public class Client {
         }
     }
 
-    public void transferirTicket(String code, String nuevoTipo) {
+    public void transferirTicket() {
         try {
             JSONObject request = new JSONObject();
             request.put("action", "transfer_ticket");
-            request.put("no_ticket", code);
-            request.put("new_type", nuevoTipo);
+            request.put("no_ticket", ticket.getString("code"));
+            switch (userType) {
+                case UserType.CHECKOUT -> request.put("new_type", "SERVICE");
+                case UserType.SERVICE -> request.put("new_type", "CHECKOUT");
+            }
             SocketJsonUtil.send(out, request);
         } catch (IOException e) {
             System.out.println("Error al transferir ticket: " + e.getMessage());
