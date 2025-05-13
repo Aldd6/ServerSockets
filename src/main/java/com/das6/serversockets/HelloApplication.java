@@ -19,7 +19,7 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-        VistaUtil.cambiar(stage, "/com/das6/serversockets/Login/login-login.fxml", 366.0, 251.0, "LOGIN");
+        VistaUtil.cambiar(stage, "/com/das6/serversockets/Login/login-login.fxml", 366.0, 260.0, "LOGIN");
     }
 
     public static void main(String[] args) {
