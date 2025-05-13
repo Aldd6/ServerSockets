@@ -1,6 +1,7 @@
 package com.das6.serversockets.controller.login;
 
 import com.das6.serversockets.WindowsUtil;
+import com.das6.serversockets.controller.Presentacion.PresentacionController;
 import com.das6.serversockets.controller.cliente.PrincipalClienteController;
 import com.das6.serversockets.controller.kiosko.KioskoController;
 import com.das6.serversockets.server.Client;
@@ -109,7 +110,9 @@ public class LoginController extends ControladorBase {
                     controller.setClient(client);
                     break;
                 case "SCREEN":
-                    VistaUtil.cambiar(stage, "/com/das6/serversockets/Cliente/principal-cliente.fxml", 366, 251, "CHECK");
+                    PresentacionController controllerPresentacion = VistaUtil.cambiar(stage, "/com/das6/serversockets/Presentacion/vistaVentana.fxml", 1080, 720, "SCREEN");
+                    controllerPresentacion.setClient(client);
+                    client.setPresController(controllerPresentacion);
                     break;
                 default:
                     System.out.println("VISTA POR DEFECTO");

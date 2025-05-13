@@ -95,6 +95,7 @@ public class KioskoController extends ControladorBase {
                         720,
                         "EXITO"
                 );
+                controller.setNumeroTicket(client.getTicket().getString("code"));
 
                 // Crear la transición de desvanecimiento
                 FadeTransition fadeIn = new FadeTransition(Duration.seconds(0.2));
