@@ -132,6 +132,15 @@ public class PrincipalClienteController extends ControladorBase {
     }
 
     @FXML
+    private void terminarTicket(ActionEvent event) {
+        System.out.println("Se termino un ticket");
+        client.finalizarTicket(client.getTicket().getString("code"));
+        client.setTicket(null);
+        lbNumTicket.setText("Ticket");
+        lbTiempoTranscurrido.setText("00:00:00");
+    }
+
+    @FXML
     private void siguienteTicket(ActionEvent event) {
 
         if (client.getTicket() != null) {
