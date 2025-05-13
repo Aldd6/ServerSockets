@@ -96,10 +96,14 @@ public class Client {
             System.out.println(user);
 
             this.deskNumber = deskNumber;
-            this.userType = UserType.convertTypeFromString(user
-                    .getJSONObject("data")
-                    .getString("type")
-            );
+
+            if (user.getInt("status") == 200){
+                this.userType = UserType.convertTypeFromString(user
+                        .getJSONObject("data")
+                        .getString("type")
+                );
+
+            }
 
             return user;
 
