@@ -65,6 +65,7 @@
                     <children>
                         <Button fx:id="btnTransferir" mnemonicParsing="false" onAction="#transferirTicket" prefHeight="25.0" prefWidth="110.0" styleClass="boton-secundario" stylesheets="@main.css" text="Transferir" textFill="#1e262e" />
                         <Button fx:id="btnSiguiente" mnemonicParsing="false" onAction="#siguienteTicket" prefHeight="25.0" prefWidth="108.0" styleClass="boton-principal" stylesheets="@main.css" text="Siguiente" />
+                        <Button fx:id="btnFinalizar" mnemonicParsing="false" onAction="#terminarTicket" prefHeight="25.0" prefWidth="108.0" styleClass="boton-finalizar" stylesheets="@main.css" text="Finalizar" />
                     </children>
                 </HBox>
             </children>

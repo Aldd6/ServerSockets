@@ -125,6 +125,7 @@ public class PrincipalClienteController extends ControladorBase {
         boolean hayTickets = !data.isEmpty();
         btnTransferir.setDisable(!hayTickets);
         btnSiguiente.setDisable(!hayTickets);
+        btnFinalizar.setDisable(false);
     }
 
     @FXML
@@ -154,15 +155,6 @@ public class PrincipalClienteController extends ControladorBase {
 
         System.out.println("Solicitó Ticket");
         client.solicitarTicket();
-    }
-
-    @FXML
-    private void finalizarTicket(ActionEvent event){
-
-        if (client.getTicket() != null){
-            System.out.println("Se finaliza ticket");
-            terminarTicket();
-        }
     }
 
     @FXML
