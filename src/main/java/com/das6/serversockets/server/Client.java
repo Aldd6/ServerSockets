@@ -24,6 +24,7 @@ public class Client {
     private static Properties properties;
 
     private JSONObject ticket;
+    private int deskNumber;
 
     private PrincipalClienteController controller;
     private PresentacionController presController;
@@ -81,11 +82,13 @@ public class Client {
         }
     }
 
-    public JSONObject iniciarSesion(JSONObject creds) {
+    public JSONObject iniciarSesion(JSONObject creds, int deskNumber) {
         try {
             SocketJsonUtil.send(out, creds);
             JSONObject user = SocketJsonUtil.receive(in);
             System.out.println(user);
+
+            this.deskNumber = deskNumber;
 
             return user;
 
@@ -214,6 +217,7 @@ public class Client {
         try {
             JSONObject request = new JSONObject();
             request.put("action", "get_ticket");
+            request.put("deskNumber",1); //cambiar por el numero de escritorio cuando se integre
             SocketJsonUtil.send(out, request);
         } catch (IOException e) {
             System.out.println("Error al solicitar ticket: " + e.getMessage());

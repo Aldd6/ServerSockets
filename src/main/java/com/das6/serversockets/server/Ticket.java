@@ -12,6 +12,7 @@ public class Ticket {
     private final String refClient;
     private final UserType type;
     private final LocalDateTime dateCreated;
+    private int deskNumber;
 
     private LocalDateTime initService;
     private LocalDateTime endService;
@@ -21,6 +22,7 @@ public class Ticket {
         this.type = type;
         this.refClient = null;
         this.dateCreated = LocalDateTime.now();
+        this.deskNumber = 0;
     }
 
     Ticket(String code, UserType type, String refClient) {
@@ -28,6 +30,7 @@ public class Ticket {
         this.type = type;
         this.refClient = refClient;
         this.dateCreated = LocalDateTime.now();
+        this.deskNumber = 0;
     }
 
     //When a ticket is requested by the client the initService is initialized
@@ -63,6 +66,7 @@ public class Ticket {
         if(initService != null) {
             message.put("initService", initService);
         }
+        message.put("deskNumber", deskNumber);
         return message;
     }
 
@@ -72,5 +76,13 @@ public class Ticket {
 
     public String getRefClient() {
         return refClient;
+    }
+
+    public void setDeskNumber(int deskNumber) {
+        this.deskNumber = deskNumber;
+    }
+
+    public int getDeskNumber() {
+        return deskNumber;
     }
 }
