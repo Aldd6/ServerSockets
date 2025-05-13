@@ -61,6 +61,9 @@ public class PrincipalClienteController extends ControladorBase {
     private Button btnTransferir;
 
     @FXML
+    private Button btnFinalizar;
+
+    @FXML
     private Label lbNumTicket;
 
     @FXML
@@ -86,6 +89,7 @@ public class PrincipalClienteController extends ControladorBase {
 
         btnTransferir.setDisable(true);
         btnSiguiente.setDisable(true);
+        btnFinalizar.setDisable(true);
 
         lbTiempoTranscurrido.setText("00:00:00");
     }
@@ -148,8 +152,17 @@ public class PrincipalClienteController extends ControladorBase {
             client.finalizarTicket(client.getTicket().getString("code"));
         }
 
-        System.out.println("Solicitó Ticket un Cajero");
+        System.out.println("Solicitó Ticket");
         client.solicitarTicket();
+    }
+
+    @FXML
+    private void finalizarTicket(ActionEvent event){
+
+        if (client.getTicket() != null){
+            System.out.println("Se finaliza ticket");
+            terminarTicket();
+        }
     }
 
     @FXML
