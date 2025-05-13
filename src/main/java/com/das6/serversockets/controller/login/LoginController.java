@@ -9,13 +9,12 @@ import com.das6.serversockets.utilities.ControladorBase;
 import com.das6.serversockets.utilities.VistaUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import org.json.JSONObject;
 import org.kordamp.ikonli.javafx.FontIcon;
+
+import java.util.function.UnaryOperator;
 
 public class LoginController extends ControladorBase {
     @FXML
@@ -31,6 +30,9 @@ public class LoginController extends ControladorBase {
     private TextField txtContraseniaPlano;
 
     @FXML
+    private TextField txtNumCaja;
+
+    @FXML
     private PasswordField txtContrasenia;
 
     @FXML
@@ -43,6 +45,21 @@ public class LoginController extends ControladorBase {
     public void initialize() {
         btnCerrar.setOnMouseClicked(WindowsUtil::cerrarVentana);
         btnMinimizar.setOnMouseClicked(WindowsUtil::minimizarVenta);
+
+        // Expresión regular para limitar los numeros del 1 al 10
+        UnaryOperator<TextFormatter.Change> regex = change -> {
+            String nuevoTexto = change.getControlNewText();
+            if (nuevoTexto.matches("([1-9]|10)?")) {
+                return change;
+            } else {
+                return null;
+            }
+        };
+
+        TextFormatter<String> formatter = new TextFormatter<>(regex);
+        txtNumCaja.setTextFormatter(formatter);
+
+
     }
 
     @FXML
@@ -77,13 +94,23 @@ public class LoginController extends ControladorBase {
         String usuario = txtUsuario.getText();
         String contrasenia = chkMostrarContra.isSelected() ? txtContraseniaPlano.getText() : txtContrasenia.getText();
 
+
+        String txtCaja = txtNumCaja.getText();
+        int numCaja;
+
+        if (txtCaja.isEmpty()){
+            numCaja = 0;
+        }else{
+            numCaja = Integer.parseInt(txtCaja);
+        }
+
         Client client = new Client();
 
         JSONObject credenciales = new JSONObject();
         credenciales.put("username", usuario);
         credenciales.put("password", contrasenia);
 
-        JSONObject responseUser = client.iniciarSesion(credenciales);
+        JSONObject responseUser = client.iniciarSesion(credenciales, numCaja);
         client.escucharServidor();
 
         if (responseUser != null && responseUser.getInt("status") == 200) {
