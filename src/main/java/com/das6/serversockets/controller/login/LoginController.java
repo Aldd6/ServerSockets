@@ -9,8 +9,10 @@ import com.das6.serversockets.utilities.ControladorBase;
 import com.das6.serversockets.utilities.VistaUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import org.json.JSONObject;
 import org.kordamp.ikonli.javafx.FontIcon;
 
@@ -91,6 +93,8 @@ public class LoginController extends ControladorBase {
     }
 
     public void iniciar(ActionEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
         String usuario = txtUsuario.getText();
         String contrasenia = chkMostrarContra.isSelected() ? txtContraseniaPlano.getText() : txtContrasenia.getText();
 
