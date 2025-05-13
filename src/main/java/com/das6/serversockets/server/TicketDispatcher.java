@@ -48,7 +48,7 @@ public class TicketDispatcher {
         return StatusCode.OK.toJsonWithData(response,params);
     }
 
-    public static JSONObject dispatchPolledTicket(UserType type) {
+    public static JSONObject dispatchPolledTicket(UserType type, int deskNumber) {
 
         HashMap<String,Object> params = new HashMap<>();
         params.put("action_type","polled_ticket");
@@ -65,6 +65,7 @@ public class TicketDispatcher {
 
         }
 
+        polledTicket.setDeskNumber(deskNumber);
         response = polledTicket.toJson();
 
         //Add the polled ticket to the general queue for maintaining it alive in the system and mark its service as initialized
