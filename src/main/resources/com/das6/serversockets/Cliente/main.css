@@ -13,6 +13,21 @@
     -fx-background-color: #3d5161;
 }
 
+.boton-finalizar{
+    -fx-background-color: #3D5161;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 25;
+}
+
+.boton-finalizar:hover {
+    -fx-background-color: #50748a;
+}
+
+.boton-finalizar:pressed {
+    -fx-background-color: #384652;
+}
+
 .boton-secundario{
     -fx-background-color: #c4d4dd;
     -fx-text-fill: #1e262e;
