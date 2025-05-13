@@ -72,7 +72,12 @@ public class PrincipalClienteController extends ControladorBase {
 
     @FXML
     public void initialize() {
-        btnCerrar.setOnMouseClicked(WindowsUtil::cerrarVentana);
+        btnCerrar.setOnMouseClicked(event -> {
+            if (client != null) {
+                client.shutDown();
+            }
+            WindowsUtil.cerrarVentana(event);
+        });
         btnMinimizar.setOnMouseClicked(WindowsUtil::minimizarVenta);
 
         columnCode.setCellValueFactory(cell -> cell.getValue().codeProperty());
@@ -129,7 +134,7 @@ public class PrincipalClienteController extends ControladorBase {
     @FXML
     private void siguienteTicket(ActionEvent event) {
 
-        if(client.getTicket() != null) {
+        if (client.getTicket() != null) {
             System.out.println("Termino un ticket el cajero");
             client.finalizarTicket(client.getTicket().getString("code"));
         }
@@ -182,7 +187,7 @@ public class PrincipalClienteController extends ControladorBase {
     }
 
     private void startTimer() {
-        if(timer != null){
+        if (timer != null) {
             timer.stop();
         }
 

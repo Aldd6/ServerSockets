@@ -34,6 +34,10 @@ public class Client {
 
     private int lastQueueSize = 0;
 
+    // escuchar y matar el hilo
+    private volatile boolean listening = true;
+    private Thread escuchaThread;
+
     private static void loadProperties() {
         properties = new Properties();
         try {
@@ -106,9 +110,9 @@ public class Client {
     }
 
     public void escucharServidor() {
-        new Thread(() -> {
+        escuchaThread = new Thread(() -> {
             try {
-                while (isClientConnected()) {
+                while (listening && isClientConnected()) {
                     JSONObject response = SocketJsonUtil.receive(in);
 
                     switch (response.getString("action_type")) {
@@ -117,25 +121,25 @@ public class Client {
 
                             JSONArray lastTickets = response.getJSONArray("data");
 
-                            if(!lastTickets.isEmpty()) {
+                            if (!lastTickets.isEmpty()) {
 
-                                if(lastTickets.length() > lastQueueSize) {
+                                if (lastTickets.length() > lastQueueSize) {
                                     System.out.println("tamaño de la cola actual: " + lastTickets.length() + "\n tamaño de la cola anterior: " + lastQueueSize);
                                     lastQueueSize = lastTickets.length();
                                     Platform.runLater(() -> {
                                         presController.actualizarTicket(lastTickets.getJSONObject(lastTickets.length() - 1));
                                         presController.actualizarCola(lastTickets);
                                     });
-                                }else if(lastTickets.length() < lastQueueSize) {
+                                } else if (lastTickets.length() < lastQueueSize) {
                                     System.out.println("tamaño de la cola actual: " + lastTickets.length() + "\n tamaño de la cola anterior: " + lastQueueSize);
                                     lastQueueSize = lastTickets.length();
                                     Platform.runLater(() -> presController.actualizarCola(lastTickets));
-                                }else {
+                                } else {
                                     System.out.println("tamaño de la cola actual: " + lastTickets.length() + "\n tamaño de la cola anterior: " + lastQueueSize);
                                     System.out.println("colas del mismo tamaño");
                                 }
 
-                            }else {
+                            } else {
                                 lastQueueSize = 0;
                             }
 
@@ -166,7 +170,7 @@ public class Client {
                             setTicket(polled);
                             System.out.println("Ticket recibido: " + getTicket());
 
-                            if (controller != null){
+                            if (controller != null) {
                                 Platform.runLater(() -> controller.mostrarTicket(polled));
                             }
 
@@ -190,7 +194,9 @@ public class Client {
             } catch (IOException e) {
                 System.out.println("Error al escuchar servidor: " + e.getMessage());
             }
-        }).start();
+        });
+        escuchaThread.setDaemon(true);
+        escuchaThread.start();
     }
 
     public void generarTicket(String tipo) {
@@ -258,6 +264,17 @@ public class Client {
             SocketJsonUtil.send(out, request);
         } catch (IOException e) {
             System.out.println("Error al transferir ticket: " + e.getMessage());
+        }
+    }
+
+    public void shutDown() {
+        listening = false;
+        try {
+            if (socket != null && !socket.isClosed()) {
+                socket.close();
+            }
+        } catch (IOException e){
+            e.printStackTrace();
         }
     }
 
