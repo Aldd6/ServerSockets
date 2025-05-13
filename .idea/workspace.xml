@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="4b53175e-67e1-4fc9-891d-05c7c1ff664f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/das6/serversockets/Cliente/services-cliente.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/das6/serversockets/Cliente/services-cliente.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,7 +32,7 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="mavenHome" value="Use Maven wrapper" />
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
       </MavenGeneralSettings>
     </option>
   </component>
@@ -57,9 +56,9 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Local/FeatureIvan&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;local/FeatureDaniel&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Salvador Hernández/IdeaProjects/ServerSockets/src/main/resources/com/das6/serversockets/Kiosko&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Programs/IntelliJ/ServerSockets/src/main/resources&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -71,6 +70,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Programs\IntelliJ\ServerSockets\src\main\resources" />
       <recent name="C:\Users\Salvador Hernández\IdeaProjects\ServerSockets\src\main\resources\com\das6\serversockets\Kiosko" />
       <recent name="C:\Users\Salvador Hernández\IdeaProjects\ServerSockets\src\main\resources\com\das6\serversockets\Cliente" />
       <recent name="C:\Users\Salvador Hernández\IdeaProjects\ServerSockets\src\main\resources\com\das6\serversockets\Login" />
@@ -135,7 +135,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-21.0.2-azul-21.0.2-4caba194b151-38275579" />
+        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.21829.142" />
+        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-IU-242.21829.142" />
       </set>
     </attachedChunks>
   </component>
@@ -177,8 +178,16 @@
       <workItem from="1746236858164" duration="5583000" />
       <workItem from="1746310712955" duration="10841000" />
       <workItem from="1746753014681" duration="172000" />
-      <workItem from="1746844488817" duration="19189000" />
-      <workItem from="1746906120126" duration="7877000" />
+      <workItem from="1746844488817" duration="5424000" />
+      <workItem from="1746913208524" duration="2193000" />
+      <workItem from="1746919228337" duration="553000" />
+      <workItem from="1746935305651" duration="3033000" />
+      <workItem from="1747004472019" duration="1180000" />
+      <workItem from="1747019820176" duration="6708000" />
+      <workItem from="1747057668688" duration="11170000" />
+      <workItem from="1747082234990" duration="5388000" />
+      <workItem from="1747091958675" duration="1510000" />
+      <workItem from="1747108820759" duration="965000" />
     </task>
     <servers />
   </component>

@@ -114,6 +114,12 @@ public class PrincipalClienteController {
 
     @FXML
     private void siguienteTicket(ActionEvent event) {
+
+        if(client.getTicket() != null) {
+            System.out.println("Termino un ticket el cajero");
+            client.finalizarTicket(client.getTicket().getString("code"));
+        }
+
         System.out.println("Solicitó Ticket un Cajero");
         client.solicitarTicket();
     }

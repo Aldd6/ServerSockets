@@ -8,10 +8,12 @@ module com.das6.serversockets {
     requires org.json;
     requires java.sql;
     requires java.naming;
+    requires java.desktop;
 
     opens com.das6.serversockets.controller.cliente to javafx.fxml;
     opens com.das6.serversockets.controller.login to javafx.fxml;
     opens com.das6.serversockets.controller.kiosko to javafx.fxml;
+    opens com.das6.serversockets.controller.Presentacion to javafx.fxml;
 
     exports com.das6.serversockets;
     exports com.das6.serversockets.controller.cliente;
