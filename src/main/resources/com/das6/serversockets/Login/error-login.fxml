@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane onMouseDragged="#onMouseDragged" onMousePressed="#onMousePressed" prefHeight="251.0" prefWidth="366.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.das6.serversockets.controller.cliente.TransferirController">
+<AnchorPane onMouseDragged="#onMouseDragged" onMousePressed="#onMousePressed" prefHeight="251.0" prefWidth="366.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.das6.serversockets.controller.login.ErrorController">
     <children>
         <HBox alignment="CENTER_LEFT" prefHeight="34.0" prefWidth="366.0" style="-fx-background-color: #466276;">
             <children>
@@ -27,7 +27,7 @@
                 <HBox alignment="CENTER_LEFT" prefHeight="5.0" prefWidth="336.0">
                     <children>
                         <FontIcon iconColor="#466276" iconLiteral="bi-chevron-double-right" iconSize="14" wrappingWidth="20.0" />
-                        <Label prefHeight="26.0" prefWidth="130.0" stylesheets="@main.css" text="Transferir Ticket">
+                        <Label prefHeight="26.0" prefWidth="130.0" stylesheets="@main.css" text="Error">
                             <font>
                                 <Font name="System Bold" size="16.0" />
                             </font>
@@ -44,19 +44,23 @@
                <children>
                   <VBox alignment="CENTER" prefHeight="144.0" prefWidth="336.0">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="336.0" stylesheets="@main.css" text="El nuevo numero de ticket para atención es" textAlignment="CENTER" />
-                        <Label fx:id="lblCodigoNuevo" alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="336.0" stylesheets="@main.css" text="AA02" textAlignment="CENTER">
-                           <font>
-                              <Font name="System Bold" size="32.0" />
-                           </font>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="336.0" stylesheets="@main.css" text="Credenciales incorrectas," textAlignment="CENTER" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="336.0" stylesheets="@main.css" text="intenta nuevamente." textAlignment="CENTER">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
                         </Label>
+                        <FontIcon iconColor="#dc3545" iconLiteral="bi-x-circle" iconSize="45" wrappingWidth="45.0" />
                      </children>
                   </VBox>
                </children>
                 </HBox>
                 <HBox alignment="CENTER_RIGHT" prefHeight="45.0" prefWidth="366.0" spacing="15.0">
                     <children>
-                        <Button fx:id="btnAceptar" mnemonicParsing="false" prefHeight="25.0" prefWidth="108.0" styleClass="boton-principal" stylesheets="@main.css" text="Aceptar" />
+                        <Button fx:id="btnAceptar" mnemonicParsing="false" prefHeight="25.0" prefWidth="108.0" styleClass="boton-principal" stylesheets="@main.css" text="Aceptar" onAction="#Aceptar"/>
                     </children>
                 </HBox>
             </children>

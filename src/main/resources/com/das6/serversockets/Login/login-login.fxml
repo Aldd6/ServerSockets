@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane onMouseDragged="#onMouseDragged" onMousePressed="#onMousePressed" prefHeight="251.0" prefWidth="366.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.das6.serversockets.controller.cliente.PrincipalClienteController">
+<AnchorPane onMouseDragged="#onMouseDragged" onMousePressed="#onMousePressed" prefHeight="260.0" prefWidth="366.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.das6.serversockets.controller.login.LoginController">
     <children>
         <HBox alignment="CENTER_LEFT" prefHeight="34.0" prefWidth="366.0" style="-fx-background-color: #466276;">
             <children>
@@ -27,9 +27,9 @@
         </HBox>
         <VBox layoutY="38.0" prefHeight="213.0" prefWidth="366.0">
             <children>
-                <HBox alignment="BOTTOM_CENTER" prefHeight="36.0" prefWidth="336.0">
+                <HBox alignment="BOTTOM_CENTER" prefHeight="18.0" prefWidth="336.0">
                     <children>
-                        <Label prefHeight="12.0" prefWidth="101.0" stylesheets="@main.css" text="Iniciar Sesión">
+                        <Label prefHeight="13.0" prefWidth="101.0" stylesheets="@main.css" text="Iniciar Sesión">
                             <font>
                                 <Font name="System Bold" size="16.0" />
                             </font>
@@ -40,35 +40,40 @@
                     <VBox.margin>
                         <Insets />
                     </VBox.margin>
-               <children>
-                  <VBox alignment="CENTER" prefHeight="109.0" prefWidth="276.0">
-                     <children>
-                        <Label contentDisplay="CENTER" prefHeight="17.0" prefWidth="336.0" style="-fx-font-weight: bold;" stylesheets="@main.css" text="Usuario" textAlignment="CENTER">
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
+                    <children>
+                        <VBox alignment="CENTER" prefHeight="159.0" prefWidth="273.0">
+                            <children>
+                                <Label contentDisplay="CENTER" prefHeight="14.0" prefWidth="276.0" style="-fx-font-weight: bold;" stylesheets="@main.css" text="Usuario" textAlignment="CENTER">
+                                    <VBox.margin>
+                                        <Insets />
+                                    </VBox.margin>
+                                </Label>
+                                <TextField fx:id="txtUsuario" stylesheets="@main.css" />
+                                <Label contentDisplay="CENTER" prefHeight="17.0" prefWidth="336.0" style="-fx-font-weight: bold;" stylesheets="@main.css" text="Contraseña" textAlignment="CENTER">
+                                    <padding>
+                                        <Insets top="2.0" />
+                                    </padding>
+                                </Label>
+                                <TextField fx:id="txtContraseniaPlano" managed="false" stylesheets="@main.css" visible="false" />
+                                <PasswordField fx:id="txtContrasenia" managed="true" stylesheets="@main.css" visible="true" />
+                        <Label contentDisplay="CENTER" prefHeight="14.0" prefWidth="276.0" style="-fx-font-weight: bold;" stylesheets="@main.css" text="Número de Caja" textAlignment="CENTER">
                            <padding>
-                              <Insets bottom="5.0" />
-                           </padding></Label>
-                        <TextField fx:id="txtUsuario" stylesheets="@main.css" />
-                        <Label contentDisplay="CENTER" prefHeight="17.0" prefWidth="336.0" style="-fx-font-weight: bold;" stylesheets="@main.css" text="Contraseña" textAlignment="CENTER">
-                           <padding>
-                              <Insets bottom="5.0" top="5.0" />
+                              <Insets top="2.0" />
                            </padding>
                         </Label>
-                        <PasswordField fx:id="txtContrasenia" stylesheets="@main.css" />
-                        <CheckBox mnemonicParsing="false" prefHeight="17.0" prefWidth="260.0" text="Mostrar contraseña">
-                           <VBox.margin>
-                              <Insets top="8.0" />
-                           </VBox.margin>
-                        </CheckBox>
-                     </children>
-                  </VBox>
-               </children>
+                        <TextField fx:id="txtNumCaja" stylesheets="@main.css" />
+                                <CheckBox fx:id="chkMostrarContra" mnemonicParsing="false" onAction="#mostrarContrasenia" prefHeight="17.0" prefWidth="260.0" text="Mostrar contraseña">
+                                    <VBox.margin>
+                                        <Insets top="8.0" />
+                                    </VBox.margin>
+                                </CheckBox>
+                            </children>
+                        </VBox>
+                    </children>
                 </HBox>
-                <HBox alignment="CENTER_RIGHT" prefHeight="45.0" prefWidth="366.0" spacing="15.0">
+                <HBox alignment="CENTER_RIGHT" prefHeight="27.0" prefWidth="336.0" spacing="15.0">
                     <children>
-                        <Button fx:id="btnSiguiente" mnemonicParsing="false" prefHeight="25.0" prefWidth="108.0" styleClass="boton-principal" stylesheets="@main.css" text="Iniciar sesión" />
+                        <Button fx:id="btnIniciarSesion" mnemonicParsing="false" onAction="#iniciar" prefHeight="25.0" prefWidth="108.0" styleClass="boton-principal" stylesheets="@main.css" text="Iniciar sesión" />
                     </children>
                 </HBox>
             </children>

@@ -28,18 +28,27 @@ public class TicketDispatcher {
                 });
     }
 
-    public static void dispatchNewTicket(UserType type, Ticket ticket) {
+    public static JSONObject dispatchNewTicket(UserType type, Ticket ticket) {
+
+        HashMap<String,Object> params = new HashMap<>();
+        params.put("action_type","new_ticket");
 
         QueueManager.getQueueByType(type).add(ticket);
+
+        JSONObject response;
 
         suscribersByType
                 .computeIfPresent(type, (t, set) -> {
                     set.forEach(ClientHandler::getUpdatedQueue);
                     return set.isEmpty() ? null : set;
                 });
+
+        response = ticket.toJson();
+
+        return StatusCode.OK.toJsonWithData(response,params);
     }
 
-    public static JSONObject dispatchPolledTicket(UserType type) {
+    public static JSONObject dispatchPolledTicket(UserType type, int deskNumber) {
 
         HashMap<String,Object> params = new HashMap<>();
         params.put("action_type","polled_ticket");
@@ -56,6 +65,7 @@ public class TicketDispatcher {
 
         }
 
+        polledTicket.setDeskNumber(deskNumber);
         response = polledTicket.toJson();
 
         //Add the polled ticket to the general queue for maintaining it alive in the system and mark its service as initialized
@@ -80,7 +90,7 @@ public class TicketDispatcher {
                 .stream().filter(t -> t.getCode().equals(ticket))
                 .findFirst();
 
-        JSONObject internalResponse = endTicket(client, ticket);
+        JSONObject internalResponse = endTicket(client, ticketToEnd.get());
 
         if(internalResponse.getInt("status") != 201) {
             return StatusCode.INTERNAL_ERROR.toJsonWithParams(params);
@@ -106,7 +116,7 @@ public class TicketDispatcher {
                         .stream().filter(t -> t.getCode().equals(ticket))
                         .findFirst();
 
-        JSONObject internalResponse = endTicket(client,ticket);
+        JSONObject internalResponse = endTicket(client,ticketToTransfer.get());
         if(internalResponse.getInt("status") != 201) {
             return StatusCode.INTERNAL_ERROR.toJsonWithParams(params);
         }
@@ -152,38 +162,35 @@ public class TicketDispatcher {
         return time;
     }
 
-    private static JSONObject endTicket(ClientHandler client, String ticket) {
+    private static JSONObject endTicket(ClientHandler client, Ticket ticket) {
 
         JSONObject log = new JSONObject();
 
-        Optional<Ticket> ticketToTransfer = QueueManager.generalQueue
-                .stream().filter(t -> t.getCode().equals(ticket))
-                .findFirst();
+        new Thread(() -> {
+            if(ticket != null) {
+                ticket.markEndService();
+                LocalTime serviceDuration = parseDurationToTime(ticket.getServiceDuration());
 
-        ticketToTransfer.ifPresent(t -> {
-            t.markEndService();
-            LocalTime serviceDuration = parseDurationToTime(t.getServiceDuration());
+                if(ticket.getRefClient() != null) {
 
-            if(t.getRefClient() != null) {
+                    log.put("no_user", client.getNoUser());
+                    log.put("no_ticket", ticket.getCode());
+                    log.put("ref_client", ticket.getRefClient());
+                    log.put("time_atention", Time.valueOf(serviceDuration));
 
-                log.put("no_user", client.getNoUser());
-                log.put("no_ticket", ticket);
-                log.put("ref_client", t.getRefClient());
-                log.put("time_atention", Time.valueOf(serviceDuration));
+                }else {
 
-            }else {
+                    log.put("no_user", client.getNoUser());
+                    log.put("no_ticket", ticket.getCode());
+                    log.put("ref_client", JSONObject.NULL);
+                    log.put("time_atention", Time.valueOf(serviceDuration));
 
-                log.put("no_user", client.getNoUser());
-                log.put("no_ticket", ticket);
-                log.put("ref_client", JSONObject.NULL);
-                log.put("time_atention", Time.valueOf(serviceDuration));
-
+                }
             }
+        }).start();
 
-            QueueManager.generalQueue.remove(t);
-
-            dispatchUpdatedQueue(UserType.SCREEN);
-        });
+        QueueManager.generalQueue.remove(ticket);
+        dispatchUpdatedQueue(UserType.SCREEN);
 
         return Repository.insertLog(log);
     }

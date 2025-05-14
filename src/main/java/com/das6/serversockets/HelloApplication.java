@@ -1,5 +1,7 @@
 package com.das6.serversockets;
 
+import com.das6.serversockets.utilities.ControladorBase;
+import com.das6.serversockets.utilities.VistaUtil;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
@@ -16,29 +18,8 @@ import java.io.IOException;
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/das6/serversockets/Cliente/principal-cliente.fxml"));
-        AnchorPane root = fxmlLoader.load();
-        Scene scene = new Scene(root);
-        scene.setFill(Color.TRANSPARENT);
 
-
-        Rectangle2D pantalla = Screen.getPrimary().getVisualBounds();
-        double anchoVentana = 366;
-        double altoVentana = 251;
-        double posicionX = pantalla.getMaxX() - anchoVentana;
-        double posicionY = pantalla.getMinY();
-
-        stage.setX(posicionX);
-        stage.setY(posicionY);
-
-        stage.initStyle(StageStyle.TRANSPARENT);
-        stage.setScene(scene);
-        stage.show();
-
-        Rectangle clip = new Rectangle(anchoVentana, altoVentana);
-        clip.setArcWidth(20);
-        clip.setArcHeight(20);
-        root.setClip(clip);
+        VistaUtil.cambiar(stage, "/com/das6/serversockets/Login/login-login.fxml", 366.0, 260.0, "LOGIN");
     }
 
     public static void main(String[] args) {
